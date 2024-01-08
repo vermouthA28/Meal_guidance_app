@@ -1,34 +1,40 @@
 Rails.application.routes.draw do
   
+#管理者側（栄養士）
   namespace :admin do
-    get 'todos/new'
-    get 'todos/edit'
+    resources :todos, only: [:new, :create, :destroy, :edit, :update]
   end
+  
   namespace :admin do
-    get 'comments/edit'
+     resources :comments, only: [:create, :destroy, :edit, :update]
   end
+  
   namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
+     resources :posts, only: [:index, :show]
   end
+  
   namespace :admin do
-    get 'homes/top'
+    root to: 'homes#top'
   end
-  namespace :public do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
+
+  
+#ユーザー側
+  scope module: :public do
+    resources :posts, only: [:new, :create, :edit, :update, :destroy, :index, :show]
   end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/confirm_withdraw'
+  
+  scope module: :public do
+    get 'users/confirm_withdraw' => 'users#confirm_withdraw'
+    patch 'users/withdraw' => 'users#withdraw'
+    resources :users, only: [:edit, :update, :show]
   end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
+  
+  scope module: :public do
+    root to: 'homes#top'
+    get "home/about"=>"homes#about"
   end
+
+  
 # 管理者（栄養士）用
 # URL /admin/sign_in ...
   devise_for :dieticians, controllers: {
@@ -42,7 +48,4 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
-  
-    root to: 'homes#top'
 end
