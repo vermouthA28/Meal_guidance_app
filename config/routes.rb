@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   
+devise_for :admins, controllers: {
+  sessions: "admin/sessions"
+}
+  
+# ユーザー用
+# URL /customers/sign_in ...
+  devise_for :users, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+  
 #管理者側（栄養士）
   namespace :admin do
     resources :todos, only: [:new, :create, :destroy, :edit, :update]
@@ -37,15 +48,6 @@ Rails.application.routes.draw do
   
 # 管理者（栄養士）用
 # URL /admin/sign_in ...
-  devise_for :dieticians, controllers: {
-  sessions: "admin/sessions"
-}
-  
-# ユーザー用
-# URL /customers/sign_in ...
-  devise_for :users, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
