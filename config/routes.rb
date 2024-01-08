@@ -1,12 +1,41 @@
 Rails.application.routes.draw do
   
-# 管理者用
+  namespace :admin do
+    get 'todos/new'
+    get 'todos/edit'
+  end
+  namespace :admin do
+    get 'comments/edit'
+  end
+  namespace :admin do
+    get 'posts/index'
+    get 'posts/show'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :public do
+    get 'posts/new'
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/edit'
+  end
+  namespace :public do
+    get 'users/show'
+    get 'users/edit'
+    get 'users/confirm_withdraw'
+  end
+  namespace :public do
+    get 'homes/top'
+    get 'homes/about'
+  end
+# 管理者（栄養士）用
 # URL /admin/sign_in ...
   devise_for :dieticians, controllers: {
   sessions: "admin/sessions"
 }
   
-# 顧客用
+# ユーザー用
 # URL /customers/sign_in ...
   devise_for :users, controllers: {
   registrations: "public/registrations",
