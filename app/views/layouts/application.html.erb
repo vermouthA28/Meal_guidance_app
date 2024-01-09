@@ -26,7 +26,7 @@
           <% elsif user_signed_in? %>
             <p>ようこそ、<%= current_user.name %>さん!</p>
             <li><%= link_to 'ホーム', new_post_path %></li>
-            <li><%= link_to 'マイページ', root_path %></li>
+            <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <li><%= link_to '投稿一覧', posts_path %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>
