@@ -12,7 +12,7 @@ GUEST_USER_EMAIL = "guest@example.com"
       user.name = "guestuser"
     end
   end
-  
+
   def guest_user?
     email == GUEST_USER_EMAIL
   end
