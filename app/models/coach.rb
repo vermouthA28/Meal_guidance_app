@@ -1,6 +1,6 @@
 class Coach < ApplicationRecord
   
-  belongs_to :my_user
-  belongs_to :dietician
+  belongs_to :user
+  belongs_to :admin
   
 end

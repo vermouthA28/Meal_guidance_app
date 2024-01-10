@@ -1,5 +1,31 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+
+
+<section class="inner">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+  <% end %>
+	<h2 class="section-ttl">マイページ</h2>
+	
+	<h3>
+		登録情報
+		<%= link_to "編集する", edit_user_path(current_user), class: "btn btn-success ml2" %>
+		<%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-success ml2" %>
+	</h3>
+	 <table class="table table-bordered">
+		<tbody>
+			<tr>
+				<th>名前</th>
+				<td><%= @user.last_name %><%= @user.first_name %></td>
+			</tr>
+
+			<tr>
+				<th>メールアドレス</th>
+				<td colspan="2"><%= @user.email %></td>
+			</tr>
+
+		</tbody>
+	</table>
+</section>
 
 
 
@@ -8,3 +34,5 @@
   <%= link_to "",edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
 </div>
 <% end %>
+
+

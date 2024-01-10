@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :coaches
+  has_many :admins, through: :coaches
+
 GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -16,5 +19,15 @@ GUEST_USER_EMAIL = "guest@example.com"
   def guest_user?
     email == GUEST_USER_EMAIL
   end
+
+ 
+  def full_name
+    if guest_user?
+    "ゲストユーザー"
+    else
+    [last_name, first_name].join(" ")
+    end
+  end
+  
 
 end
