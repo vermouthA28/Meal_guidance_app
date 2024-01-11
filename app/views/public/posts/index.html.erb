@@ -1,5 +1,31 @@
 <h1>投稿一覧</h1>
 
+<% @posts.each do |post| %>
+
+  <p>日時</p>
+  <span><%= post.eaten_at %></span>
+
+
+   <% genres = [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]] %>
+ 
+  <%= form_with model:post do |f| %>
+  
+  <span><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></span>
+     
+      
+   
+  <% end %>
+
+
+  <p>食事内容</p>
+  <span><%= post.meal_content %></span>
+  
+   <p>画像</p>
+  <%= image_tag post.image, size: "200x200" %>
+
+
+<% end %>
+
 
 
 
