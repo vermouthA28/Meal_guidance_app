@@ -1,2 +1,48 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5"><%= @post.user.full_name %>様の食事内容詳細</h4>
+      <div class="d-flex align-items-center">
+        <table class="table table-borderless">
+          <tr>
+            <th>投稿ID</td>
+            <td><%= @post.id %></td>
+          </tr>
+
+          <tr>
+            <th>日時</th>
+            <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
+          </tr>
+
+          <tr>
+            <th>ジャンル</th>
+            <td><%= I18n.t("enums.genre_id.#{@post.genre_id}", locale: :ja) %></td>
+          </tr>
+
+          <tr>
+            <th>食事内容</th>
+            <td>
+              <%= content_tag(:ul) do %>
+                <% @post.meal_content.split("\n").each do |content| %>
+                  <%= content_tag(:li, content) %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>画像</th>
+            <td>
+               <% if @post.image.present? %>
+                 <%= image_tag @post.image, size: "200x200" %>
+               <% else %>
+                  画像がありません
+               <% end %>
+            </td>
+          </tr>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

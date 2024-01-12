@@ -1,2 +1,37 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5">投稿一覧</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>日時</th>
+              <th>ジャンル</th>
+              <th>食事内容</th>
+              <th>画像</th>
+            </tr>
+          </thead>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M"), admin_post_path(post) %></td>
+              <td><%= I18n.t("enums.genre_id.#{post.genre_id}", locale: :ja) %></td>
+              <td>
+                  <%= content_tag(:ul) do %>
+                    <% post.meal_content.split("\n").each do |content| %>
+                      <%= content_tag(:li, content) %>
+                    <% end %>
+                  <% end %>
+              </td>
+              <td>
+                  <% if post.image.present? %>
+                    <%= image_tag post.image, size: "200x200" %>
+                  <% else %>
+                    画像がありません
+                  <% end %>
+               </td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>

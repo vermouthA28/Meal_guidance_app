@@ -31,7 +31,7 @@
         <%= link_to 'Meal_guidance_todo', (admin_signed_in? ? admin_root_path : root_path ), class: "logo" %>
         <ul class="flex">
           <% if admin_signed_in? %>
-            <li><%= link_to '会員一覧' %></li>
+            <li><%= link_to '会員一覧',admin_users_path %></li>
             <li><%= link_to '投稿一覧', admin_posts_path %></li>
             <li><%= link_to 'todo作成', new_admin_todo_path %></li>
             <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>

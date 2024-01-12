@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :user_admin, only: [:index]
+
   def new
     @post = Post.new
   end
@@ -24,6 +26,15 @@ class Public::PostsController < ApplicationController
 
   private
   # ストロングパラメータ
+
+    # def user_admin
+    #   @users = User.all
+    #   if  current_user.admin == true
+    #       redirect_to root_path
+    #   else
+    #       render action: "index"
+    #   end
+    # end
 
   def post_params
     params.require(:post).permit(:eaten_at, :meal_content, :image, :genre_id)

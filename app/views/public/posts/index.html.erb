@@ -20,8 +20,13 @@
 
 
   <p>食事内容</p>
-  <span><%= post.meal_content %></span><br>
-  
+  <span><%= content_tag(:ul) do %>
+          <% post.meal_content.split("\n").each do |content| %>
+            <%= content_tag(:li, content) %>
+          <% end %>
+        <% end %>
+  </span><br>
+
 
     <% if post.image.present? %>
       <%= image_tag post.image, size: "200x200" %>
