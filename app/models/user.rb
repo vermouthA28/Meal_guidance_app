@@ -6,9 +6,18 @@ class User < ApplicationRecord
 
   has_many :coaches
   has_many :admins, through: :coaches
+  
+  
+  def user_status
+    if is_active == false
+      "退会"
+    else
+      "有効"
+    end
+  end
 
 
- def active_for_authentication?
+  def active_for_authentication?
     super && is_active?
   end
 
