@@ -6,15 +6,10 @@
   <span><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>
 
 
-   <% genres = [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]] %>
-
+  
   <%= form_with model:post do |f| %>
-
-
-  <!--<span><%#= I18n.t("enums.post.genre_id")[post.genre_id] %></span>-->
-  <!--<span><%#= genres.find { |genre| genre[1] == post.genre_id }.to_a.first %></span>-->
-  <!--<span><%#= I18n.t("enums.genre_id.#{post.genre_id}", scope: :ja) %></span>-->
-  <span><%= I18n.t("enums.genre_id.#{post.genre_id}", locale: :ja) %></span>
+   <p>ジャンル</p>
+    <span><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></span>
 
   <% end %>
 

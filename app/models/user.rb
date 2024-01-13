@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  belongs_to :admin
   has_many :posts, dependent: :destroy
-  has_many :coaches
-  has_many :admins, through: :coaches
-  
+ 
   
 
   def active_for_authentication?

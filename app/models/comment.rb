@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :post
-  belongs_to :dietician
+  belongs_to :admin
+  belongs_to :user
+  
 end

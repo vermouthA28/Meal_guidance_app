@@ -16,7 +16,7 @@
 
           <tr>
             <th>ジャンル</th>
-            <td><%= I18n.t("enums.genre_id.#{@post.genre_id}", locale: :ja) %></td>
+            <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}", locale: :ja) %></td>
           </tr>
 
           <tr>
@@ -42,6 +42,8 @@
           </tr>
           
         </table>
+         <%= render "admin/comments/index" %>
+         <%= render "admin/comments/form", post: @post, comment: @comment%>
       </div>
     </div>
   </div>

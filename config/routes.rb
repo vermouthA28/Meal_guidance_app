@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
- 
+
 
 # 管理者（栄養士）用
 # URL /admin/sign_in ...
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
- 
+
 
 #管理者側（栄養士）
   namespace :admin do
@@ -33,11 +33,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-     resources :comments, only: [:create, :destroy, :edit, :update]
-  end
-
-  namespace :admin do
-     resources :posts, only: [:index, :show]
+     resources :posts, only: [:index, :show] do
+      resources :comments, only: [:create, :destroy]
+     end
   end
 
   namespace :admin do

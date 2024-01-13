@@ -7,6 +7,8 @@ class Admin < ApplicationRecord
   
   
   
-  has_many :coaches
-  has_many :users, through: :coaches
+  has_many :users
+  has_many :posts
+ 
+  
 end

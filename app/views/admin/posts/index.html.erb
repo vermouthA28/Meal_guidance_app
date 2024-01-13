@@ -5,6 +5,8 @@
         <table class="table">
           <thead>
             <tr>
+
+              <th>ユーザー</th>
               <th>日時</th>
               <th>ジャンル</th>
               <th>食事内容</th>
@@ -13,8 +15,9 @@
           </thead>
           <% @posts.each do |post| %>
             <tr>
+              <td><%= link_to post.user.full_name, admin_user_path(post) %></td>
               <td><%= link_to post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M"), admin_post_path(post) %></td>
-              <td><%= I18n.t("enums.genre_id.#{post.genre_id}", locale: :ja) %></td>
+              <td><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></td>
               <td>
                   <%= content_tag(:ul) do %>
                     <% post.meal_content.split("\n").each do |content| %>
@@ -24,7 +27,7 @@
               </td>
               <td>
                   <% if post.image.present? %>
-                    <%= image_tag post.image, size: "200x200" %>
+                    <%= image_tag post.image, size: "100x100" %>
                   <% else %>
                     画像がありません
                   <% end %>
