@@ -2,10 +2,13 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
     @users = User.all
+    
+
   end
 
   def show
     @user = User.find(params[:id])
+    @user_posts = @user.posts.order(created_at: :desc)
   end
 
   def edit
@@ -27,16 +30,16 @@ class Admin::UsersController < ApplicationController
         redirect_to admin_user_path(@user), notice: flash[:notice]
       else
         render :edit
-        
+
       end
   end
-  
+
 
 
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :email, :is_active)
+    params.require(:user).permit(:last_name, :first_name, :email, :is_active ,:admin_id)
   end
-  
+
 end

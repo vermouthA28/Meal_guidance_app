@@ -9,6 +9,9 @@
               <th>氏名</th>
               <th>メールアドレス</th>
               <th>会員ステータス</th>
+              <th>担当</th>
+              <th></th>
+
             </tr>
           </thead>
           <% @users.each do |user| %>
@@ -23,6 +26,10 @@
                     <span class="text-secondary">退会</span>
                   <% end %>
                </td>
+               <td>
+                 <%= user.admin.last_name %>
+               </td>
+               <td><%= link_to "投稿一覧を見る", admin_user_posts_path(user), class:"btn btn-primary" %></td>
             </tr>
           <% end %>
         </table>

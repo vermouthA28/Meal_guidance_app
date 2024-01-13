@@ -33,6 +33,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="box-password">
+    <%= f.collection_select :admin_id, Admin.all, :id, :last_name, {prompt: "選択してください"}, :class => 'form-control', :id => 'id' %>
+  </div>
+
   <div class="box-signup">
     <%= f.submit "新規登録" %>
   </div>

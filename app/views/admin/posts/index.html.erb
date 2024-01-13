@@ -13,10 +13,11 @@
               <th>画像</th>
             </tr>
           </thead>
+          
           <% @posts.each do |post| %>
             <tr>
-              <td><%= link_to post.user.full_name, admin_user_path(post) %></td>
-              <td><%= link_to post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M"), admin_post_path(post) %></td>
+              <td><%= link_to post.user.full_name, admin_user_path(user_id: post.user.id, id: post.id) %></td>
+              <td><%= link_to post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M"), admin_user_post_path(user_id: post.user.id, id: post.id) %></td>
               <td><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></td>
               <td>
                   <%= content_tag(:ul) do %>

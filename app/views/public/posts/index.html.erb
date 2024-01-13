@@ -1,6 +1,7 @@
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
+  
 
   <p>日時</p>
   <span><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>

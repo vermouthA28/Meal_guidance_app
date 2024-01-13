@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :admin
   has_many :posts, dependent: :destroy
- 
-  
+
+
 
   def active_for_authentication?
     super && is_active?

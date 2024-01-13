@@ -3,10 +3,16 @@ class Admin::CommentsController < ApplicationController
   
   def create
     post = Post.find(params[:post_id])
-    comment = post.comments.new(post_comment_params)
-    comment.post_id = post.id
-    comment.save
-    redirect_to request.referer
+    if current_user.admin?
+      @comment = Comment.new(comment_params)
+    # comment = post.comments.new(comment_params)
+      comment.post_id = post.id
+      comment.save
+      redirect_to request.referer
+    else
+      redirect_to root_path, notice: "管理者以外はコメントを作成できません。"
+    end
+    
   end
   
   def destroy
@@ -16,7 +22,7 @@ class Admin::CommentsController < ApplicationController
   
   private
   
-  def post_comment_params
+  def comment_params
     params.require(:comment).permit(:post_id, :admin_id, :comment)
   
   end
