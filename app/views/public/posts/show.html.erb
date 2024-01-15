@@ -1,2 +1,70 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5">食事内容詳細</h4>
+      <div class="d-flex align-items-center">
+        <table class="table table-borderless">
+          
+          
+          <tr>
+            <th>日時</th>
+            <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
+          </tr>
+          
+          
+          <tr>
+            <%= form_with model:@post do |f| %>
+             <th>ジャンル</th>
+              <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
+            <% end %>
+          </tr>
+     
+          <tr>
+            <th>食事内容</th>
+            <td><%= content_tag(:ul) do %>
+                    <% @post.meal_content.split("\n").each do |content| %>
+                      <%= content_tag(:li, content) %>
+                    <% end %>
+                  <% end %>
+            </td>
+          </tr>
+      
+          <tr>
+            <th>画像</th>
+            <td>
+              <% if @post.image.present? %>
+                <%= image_tag @post.image, size: "200x200" %>
+              <% else %>
+                画像がありません
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+          <td><%= link_to "編集する", edit_post_path(@post), class: "btn btn-success ml2" %></td>
+          </tr>
+        </table>
+        
+      <table>
+        <tbody>
+          <%  @post.comments.each do |comment| %>
+         
+          <tr>
+            <td><%= comment.comment %></td>
+          </tr>
+           <tr>
+            <td>
+              <%= link_to admin_user_post_path(@post.user, @post) do %>
+                <%= comment.admin.last_name %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+        	
+      </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+ 

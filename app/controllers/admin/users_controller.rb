@@ -1,15 +1,15 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @users = User.all
-    
+    @members = current_admin.users
+
 
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_admin.users.find_by(id: params[:id])
     @user_posts = @user.posts.order(created_at: :desc)
-    byebug
+
   end
 
   def edit

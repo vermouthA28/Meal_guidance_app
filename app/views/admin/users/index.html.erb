@@ -11,28 +11,32 @@
               <th>会員ステータス</th>
               <th>担当</th>
               <th></th>
-
+              <th></th>
             </tr>
           </thead>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= link_to user.full_name, admin_user_path(user) %></td>
-              <td><%= user.email %></td>
-               <td>
+          <tbody>
+            <% @members.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= link_to user.full_name, admin_user_path(user) %></td>
+                <td><%= user.email %></td>
+                <td>
                   <% if user.is_active %>
-                    <span class="text-success">有効</span>
+                    <%= "有効" %>
                   <% else %>
-                    <span class="text-secondary">退会</span>
+                    <%= "退会" %>
                   <% end %>
-               </td>
-               <td>
-                 <%= user.admin.last_name %>
-               </td>
-               <td><%= link_to "投稿一覧を見る", admin_user_posts_path(user), class:"btn btn-primary" %></td>
-            </tr>
-          <% end %>
+                </td>
+                <td><%= current_admin.last_name %></td>
+                <td><%= link_to "投稿一覧を見る", admin_user_posts_path(user), class: "btn btn-primary" %></td>
+                <td><%= link_to "todo作成", new_admin_user_todo_path(user), class: "btn btn-success" %></td>
+              </tr>
+            <% end %>
+            <% if @members.empty? %>
+              <tr>
+                <td colspan="6">担当のユーザーはありません</td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
-    </div>
-  </div>
-</div>
+     

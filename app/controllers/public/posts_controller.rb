@@ -14,27 +14,27 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-   @posts = Post.where(user_id: current_user.id)
+   @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update(post_params)
+    redirect_to post_path(post.id)
+
   end
 
 
   private
   # ストロングパラメータ
-
-    # def user_admin
-    #   @users = User.all
-    #   if  current_user.admin == true
-    #       redirect_to root_path
-    #   else
-    #       render action: "index"
-    #   end
-    # end
 
   def post_params
     params.require(:post).permit(:eaten_at, :meal_content, :image, :genre_id)

@@ -4,11 +4,7 @@
       <h4 class="my-5"><%= @post.user.full_name %>様の食事内容詳細</h4>
       <div class="d-flex align-items-center">
         <table class="table table-borderless">
-          <tr>
-            <th>投稿ID</td>
-            <td><%= @post.id %></td>
-          </tr>
-
+          
           <tr>
             <th>日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>

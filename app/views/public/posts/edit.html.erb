@@ -1,2 +1,19 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<h1>編集画面</h1>
+
+<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+  <h4>日時</h4>
+  <%= f.datetime_field :eaten_at %>
+
+  <h4>ジャンル</h4>
+  <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+<%#= f.select :genre_id, Post.genres.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+
+  <h4>食事内容</h4>
+  <%= f.text_area :meal_content %>
+
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+
+
+  <%= f.submit '編集', class: "btn btn-success ml2" %>
+<% end %>
