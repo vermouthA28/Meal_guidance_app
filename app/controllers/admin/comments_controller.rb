@@ -19,7 +19,8 @@ class Admin::CommentsController < ApplicationController
     if post
       @comment = Comment.new(comment_params)
       @comment.post_id = post.id
-      @comment.save
+      @comment.admin = current_admin
+      @comment.save!
     redirect_to request.referer
     else
       # エラー処理またはログ出力など、投稿が見つからなかった場合の対応を行う
@@ -29,9 +30,11 @@ class Admin::CommentsController < ApplicationController
   end
   
   def destroy
-    comment = PostComment.find(params[:id])
-    comment.destroy
+  comment = Comment.find(params[:id]) 
+  comment.destroy 
+  redirect_to request.referer 
   end
+ 
   
   private
   

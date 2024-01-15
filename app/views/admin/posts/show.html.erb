@@ -40,10 +40,18 @@
                <% end %>
             </td>
           </tr>
-          
+        
         </table>
-         <%= render "admin/comments/index", post: @post, comment: @comment %>
-         <%= render "admin/comments/form", post: @post, comment: @comment%>
+      
+        <div class="col">
+          <%= render "admin/comments/index", post: @post, comment: @comment %>
+        </div>
+        
+        <div>
+          <%= render "admin/comments/form", post: @post, comment: @comment %>
+        </div>
+        
+         
       </div>
     </div>
   </div>

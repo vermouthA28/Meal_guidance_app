@@ -3,18 +3,22 @@
     <%  post.comments.each do |comment| %>
     <tr>
       <td>
-        <%= link_to admin_post_path(post) do %>
-          <%= image_tag comment.user.get_profile_image, size: "50x50" %><br>
-          <%= comment.user.name %>
+        <%= link_to admin_user_post_path(post.user, post) do %>
+          <%= comment.admin.last_name %>
         <% end %>
       </td>
+    </tr>
+    <tr>
       <td><%= comment.comment %></td>
+    </tr>
+    <tr>
       <td>
-        <% if comment.user == current_user %>
-          <%= link_to "Destroy", admin_comment_path(@post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
+        <% if comment.admin == current_admin %>
+          <%= link_to "Destroy", admin_user_post_comment_path(post.user, post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
         <% end %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+

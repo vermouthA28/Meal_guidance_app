@@ -26,8 +26,9 @@ Rails.application.routes.draw do
 #管理者側（栄養士）
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :posts, only: [:index, :show]
-      resources :comments, only: [:create, :destroy]
+      resources :posts, only: [:index, :show] do
+        resources :comments, only: [:create, :destroy]
+      end
       resources :todos, only: [:new, :create, :destroy, :edit, :update]
     end
   end

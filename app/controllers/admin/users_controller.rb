@@ -9,6 +9,7 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_posts = @user.posts.order(created_at: :desc)
+    byebug
   end
 
   def edit
