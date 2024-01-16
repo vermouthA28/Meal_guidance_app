@@ -21,7 +21,20 @@
       </table>
       </div>
       
-     <div class='col-md-3'>
+   <!--  <div class='col-md-3'>-->
+   <!--      <%# if flash[:alert] %>-->
+   <!--  <div class="alert alert-danger">-->
+   <!--    <%#= flash[:alert] %>-->
+   <!--  </div>-->
+   <!--<%# end %>-->
+   <!--    <%# if @post.errors.any? %>-->
+   <!--       <%#= @post.errors.count %>件のエラーが発生しました-->
+   <!--       <ul>-->
+   <!--         <%# @post.errors.full_messages.each do |message| %>-->
+   <!--           <li><%#= message %></li>-->
+   <!--         <#% end %>-->
+   <!--       </ul>-->
+   <!--     <%# end %>-->
       <h1>【食事記録】</h1>
       
       <%= form_with model: @post do |f| %>

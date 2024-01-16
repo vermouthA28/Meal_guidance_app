@@ -6,19 +6,7 @@
   </div>
 
 <!--絞り込み機能-->
-  <!--<%#= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>-->
-  <!--<div class="form-row align-items-end">-->
-  <!--  <div class="col">-->
-  <!--     <%#= f.label :genre_id, "ジャンル" %>-->
-  <!--     <%#= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "ジャンル" }, class: "form-control" %>-->
-       
-  <!--  </div>-->
-  <!--  <div class="col">-->
-  <!--    <%#= f.submit "絞り込み", class: "btn btn-primary" %>-->
-  <!--  </div>-->
-  <!--<%# end %>-->
-  <!--</div>-->
-  
+
   <%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
   <div class="form-row align-items-end">
     <div class="col-4">
@@ -62,6 +50,17 @@
               <% end %>
             <% end %>
       </span><br>
+
+
+            <p>画像</p>
+            <span>
+              <% if post.image.present? %>
+                <%= image_tag post.image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no-image', size: "100x100" %>
+              <% end %>
+            </span>
+          </tr>
 
        <p>コメント数： <%= post.comments.count %></p>
       </div>

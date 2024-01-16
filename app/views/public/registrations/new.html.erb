@@ -1,8 +1,7 @@
 <div class="box1 d-flex justify-content-center align-items-center">
   <div class="box-inner">
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <%#= form_with model: @customer, url: registration_path(resource_name), local: true do |f| %>
-    <%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    
   <%= render "public/shared/error_messages", resource: resource %>
 
 <h2>新規登録</h2>
@@ -34,6 +33,7 @@
   </div>
 
   <div class="box-password">
+    <%= f.label :admin_id, "担当栄養士" %><br />
     <%= f.collection_select :admin_id, Admin.all, :id, :last_name, {prompt: "選択してください"}, :class => 'form-control', :id => 'id' %>
   </div>
 
@@ -48,6 +48,6 @@
     <%= link_to "ログイン", new_user_session_path %>
   </div>
 
-<%#= render "public/shared/links" %>
+
   </div>
 </div>

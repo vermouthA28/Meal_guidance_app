@@ -32,12 +32,13 @@
               <% if @post.image.present? %>
                 <%= image_tag @post.image, size: "200x200" %>
               <% else %>
-                画像がありません
+                <%= image_tag 'no-image', size: "200x200" %>
               <% end %>
             </td>
           </tr>
           <tr>
-          <td><%= link_to "編集する", edit_post_path(@post), class: "btn btn-success ml2" %></td>
+          <td><%= link_to "編集", edit_post_path(@post), class: "btn btn-success ml2" %></td>
+          <td><%= link_to "削除", post_path(@post), method: :delete,class: "btn btn-danger ml2" %></td>
           </tr>
         </table>
         
