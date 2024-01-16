@@ -16,13 +16,22 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-   @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
+    @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
     @genre_id = params[:genre_id]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+
+
     if @genre_id.present?
-      @posts = Post.where(user_id: current_user.id, genre_id: @genre_id).order(eaten_at: :asc)
-    else
-      @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
+      @posts = @posts.where(genre_id: @genre_id).order(eaten_at: :asc)
     end
+
+    if @start_date.present? && @end_date.present?
+      start_datetime = DateTime.strptime(@start_date, '%Y-%m-%d')
+      end_datetime = DateTime.strptime(@end_date, '%Y-%m-%d').end_of_day
+      @posts = @posts.where(eaten_at: start_datetime..end_datetime).order(eaten_at: :asc)
+    end
+
   end
 
   def show

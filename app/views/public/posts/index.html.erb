@@ -4,11 +4,42 @@
       <h1>投稿一覧</h1>
     </div>
   </div>
+
+<!--絞り込み機能-->
+  <!--<%#= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>-->
+  <!--<div class="form-row align-items-end">-->
+  <!--  <div class="col">-->
+  <!--     <%#= f.label :genre_id, "ジャンル" %>-->
+  <!--     <%#= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "ジャンル" }, class: "form-control" %>-->
+       
+  <!--  </div>-->
+  <!--  <div class="col">-->
+  <!--    <%#= f.submit "絞り込み", class: "btn btn-primary" %>-->
+  <!--  </div>-->
+  <!--<%# end %>-->
+  <!--</div>-->
+  
   <%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
-  <%= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "ジャンルで絞り込む" } %>
-  <%= f.submit "フィルタリング" %>
+  <div class="form-row align-items-end">
+    <div class="col-4">
+       <%= f.label :genre_id, "ジャンル" %>
+       <%= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "" }, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.label :start_date, "開始日" %>
+      <%= f.date_field :start_date, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.label :end_date, "終了日" %>
+      <%= f.date_field :end_date, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.submit "絞り込み", class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
- 
+
+<!--投稿一覧-->
 <div class="container">
   <div class="d-flex flex-wrap">
     <% @posts.each do |post| %>
