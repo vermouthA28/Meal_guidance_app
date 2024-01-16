@@ -1,6 +1,6 @@
 <h1><%= @user.full_name %>様のTodoリスト作成</h1>
 
-<%= link_to '一覧へ', admin_user_todos_path(@user) %>
+<%= link_to '一覧へ', admin_user_todos_path(@user), class: "btn btn-info"  %>
 
 <%= form_with model: @todo, url: admin_user_todos_path(@user) do |f| %>
 <div class="field">

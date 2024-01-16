@@ -2,8 +2,8 @@ class Admin::TodosController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @todos = Todo.all
     @user = User.find(params[:user_id])
+    @todos = @user.todos.all
   end
   
   def new
@@ -16,7 +16,7 @@ class Admin::TodosController < ApplicationController
     @todo = @user.todos.build(todo_params)
     @todo.admin = current_admin
     if @todo.save
-      redirect_to admin_user_todos_path(@user), notice: 'ToDoが作成されました。'
+      redirect_to admin_user_todos_path(@user), notice: 'Todoが作成されました。'
     else
       render 'new'
     end
@@ -24,18 +24,30 @@ class Admin::TodosController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
-    @todo = Todo.find(params[:id])
+    @todo = @user.todos.find(params[:id])
   end
   
   def update
     @user = User.find(params[:user_id])
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
-      redirect_to admin_user_todos_path(@user), notice: 'ToDoが更新されました。'
+      redirect_to admin_user_todos_path(@user), notice: 'Todoが更新されました。'
     else
       render'edit'
     end
   end
+  
+  def destroy
+    @user = User.find(params[:user_id])
+    @todo = Todo.find(params[:id])
+    if @todo.destroy
+      redirect_to admin_user_todos_path(@user), notice: 'Todoが削除されました'
+    else
+      redirect_to admin_user_todos(@user), alert: 'Todoの削除に失敗しました'
+    end
+
+  end
+
   
   private
   def todo_params

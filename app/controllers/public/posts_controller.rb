@@ -4,6 +4,8 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @user = current_user
+    @todos = @user.todos.all
   end
 
   def create
@@ -15,6 +17,12 @@ class Public::PostsController < ApplicationController
 
   def index
    @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
+    @genre_id = params[:genre_id]
+    if @genre_id.present?
+      @posts = Post.where(user_id: current_user.id, genre_id: @genre_id).order(eaten_at: :asc)
+    else
+      @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
+    end
   end
 
   def show
