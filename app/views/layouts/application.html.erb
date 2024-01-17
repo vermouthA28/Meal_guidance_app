@@ -8,7 +8,18 @@
     <script src="https://kit.fontawesome.com/0af45ee5ef.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+        font-family: 'DotGothic16', sans-serif;
+      }
+    </style>
     <style>
       footer {
         position: relative;
@@ -19,16 +30,21 @@
       }
     </style>
 
-
   </head>
 
   <body>
+
     <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#3C4F91;">
         <span class="navbar-text text-white">
         <div class="container">
+        <%= link_to (admin_signed_in? ? admin_root_path : root_path ) do %>
+          <%= image_tag 'logo1.png', size: "150x130" %>
+        <% end %>
 
-        <%= link_to 'Meal_guidance_todo', (admin_signed_in? ? admin_root_path : root_path ), class: "logo" %>
+
+
+        <%#= link_to 'Meal_guidance_todo', (admin_signed_in? ? admin_root_path : root_path ), class: "logo" %>
         <ul class="flex">
           <% if admin_signed_in? %>
             <li><%= link_to '会員一覧',admin_users_path %></li>
@@ -51,6 +67,7 @@
         </div>
     </header>
 
+
     <main>
       <div class="container">
         <%= yield %>
@@ -58,7 +75,7 @@
     </main>
 
     <footer>
-       <nav class="navbar fixed-bottom navbar-dark bg-dark d-flex justify-content-center mt-auto">
+       <nav class="navbar fixed-bottom navbar-dark bg-dark d-flex justify-content-center mt-auto" style="background-color:#3C4F91;">
          <span class="navbar-text text-white">
            MealguidanceTodo
          </span>

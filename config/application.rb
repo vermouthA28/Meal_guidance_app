@@ -10,8 +10,21 @@ module MealGuidanceApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
+
     config.i18n.default_locale = :ja
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
+
+
+    config.after_initialize do
+      guest_user = User.find_or_create_by(email: User::GUEST_USER_EMAIL)
+
+      guest_user.post.each { |post| post.destroy } if guest_user.posts.any?
+
+    end
+
+
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -5,18 +5,19 @@ class Public::PostsController < ApplicationController
   def new
     @post = Post.new
     @user = current_user
-    @todos = @user.todos.all
+    @todos = @user ? @user.todos.all : nil
   end
 
   def create
     @user = current_user
+    @todos = @user ? @user.todos.all : nil
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
       redirect_to posts_path
     else
-      flash.now[:alert] = "投稿に失敗しました。"
-      redirect_to new_post_path(@user)
+      flash[:danger] = "投稿に失敗しました。"
+      render 'new' 
     end
   end
 

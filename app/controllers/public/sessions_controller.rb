@@ -6,12 +6,17 @@ before_action :user_state, only: [:create]
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to new_post_path, notice: "guestuserでログインしました。"
+    redirect_to new_post_path, success:  "ゲストユーザーでログインしました。"
   end
 
 
   def after_sign_in_path_for(resource)
     new_post_path
+  end
+  
+  def destroy
+    reset_guest_data if current_user.email == User::GUEST_USER_EMAIL
+    super
   end
 
 

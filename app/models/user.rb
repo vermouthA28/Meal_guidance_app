@@ -26,6 +26,9 @@ GUEST_USER_EMAIL = "guest@example.com"
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+      user.last_name = "ゲスト"
+      user.first_name = "ユーザー"
+      user.admin_id = params[:admin_id]
     end
   end
 
@@ -36,9 +39,9 @@ GUEST_USER_EMAIL = "guest@example.com"
 
   def full_name
     if guest_user?
-    "ゲストユーザー"
+      "ゲストユーザー"
     else
-    [last_name, first_name].join(" ")
+      [last_name, first_name].join(" ")
     end
   end
 
