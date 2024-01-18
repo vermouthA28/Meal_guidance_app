@@ -39,7 +39,11 @@ Rails.application.routes.draw do
 
 #ユーザー側
   scope module: :public do
-    resources :posts, only: [:new, :create, :edit, :update, :destroy, :index, :show]
+    resources :posts, only: [:new, :create, :edit, :update, :destroy, :index, :show] do
+      collection do
+        post "checked", to: "posts#checked"
+      end
+    end
   end
 
   scope module: :public do

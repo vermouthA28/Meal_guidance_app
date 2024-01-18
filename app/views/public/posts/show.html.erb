@@ -8,14 +8,14 @@
             <th>日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
           </tr>
-          
+
           <tr>
             <%= form_with model:@post do |f| %>
              <th>ジャンル</th>
               <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
             <% end %>
           </tr>
-     
+
           <tr>
             <th>食事内容</th>
             <td><%= content_tag(:ul) do %>
@@ -25,7 +25,19 @@
                   <% end %>
             </td>
           </tr>
-      
+          <tr>
+            <th>達成目標</th>
+            <td>
+              <ul class="list-unstyled">
+                <% @post.post_todos.each do |post_todo| %>
+                  <li>
+                    <%= post_todo.todo.todo %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+
           <tr>
             <th>画像</th>
             <td>
@@ -41,11 +53,11 @@
           <td><%= link_to "削除", post_path(@post), method: :delete,class: "btn btn-danger ml2" %></td>
           </tr>
         </table>
-        
+
       <table>
         <tbody>
           <%  @post.comments.each do |comment| %>
-         
+
           <tr>
             <td><%= comment.comment %></td>
           </tr>
@@ -58,11 +70,10 @@
           </tr>
           <% end %>
         </tbody>
-        	
+
       </table>
 
       </div>
     </div>
   </div>
 </div>
- 

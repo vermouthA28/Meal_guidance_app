@@ -39,7 +39,13 @@ class Public::PostsController < ApplicationController
       end_datetime = DateTime.strptime(@end_date, '%Y-%m-%d').end_of_day
       @posts = @posts.where(eaten_at: start_datetime..end_datetime).order(eaten_at: :asc)
     end
-     @checked_todos_count = params[:todos].size if params[:todos].present?
+
+    if params[:todos].present?
+        @checked_todos_count = params[:todos].size
+      else
+        @checked_todos_count = 0
+      end
+
   end
 
   def show
@@ -64,12 +70,20 @@ class Public::PostsController < ApplicationController
 
   end
 
+  def checked
+    @post_todos = Post.new(checked_params)
+    @post_todos.save
+  end
+
 
   private
   # ストロングパラメータ
-
   def post_params
-    params.require(:post).permit(:eaten_at, :meal_content, :image, :genre_id)
+    params.require(:post).permit(:eaten_at, :meal_content, :image, :genre_id, todo_ids: [] )
+  end
+
+  def checked_params
+    params.require(:post).permit(todo_ids: []).merge(user_id: current_user.id)
   end
 
 end

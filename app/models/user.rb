@@ -8,8 +8,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :todos, dependent: :destroy
 
-  validates :email, presence: true, uniqueness: true
-  validates :password, length: { minimum: 6 }
+ 
   validates :last_name, presence: true
   validates :first_name, presence: true
 
