@@ -1,7 +1,32 @@
+
 <h1><%= @user.full_name %>様のTodoリスト作成</h1>
 
-<%= link_to '一覧へ', admin_user_todos_path(@user), class: "btn btn-info"  %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="font-size: 20px;">Todo</th>
+     
 
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @todos.each do |todo| %>
+    <tr>
+      <td>
+      
+      <%= todo.todo %>
+      </td>
+     
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to '一覧へ戻る', admin_user_todos_path(@user), class: "btn btn-info"  %>
+<div class="d-flex justify-content-center">
 <%= form_with model: @todo, url: admin_user_todos_path(@user) do |f| %>
 <div class="field">
   <%= f.label :Todo %><br>
@@ -13,3 +38,5 @@
 </div>
 <% end %>
 
+</div>
+</div>

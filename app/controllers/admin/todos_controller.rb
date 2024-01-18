@@ -9,6 +9,7 @@ class Admin::TodosController < ApplicationController
   def new
     @todo = Todo.new
     @user = User.find(params[:user_id])
+    @todos = @user.todos.all
   end
   
   def create

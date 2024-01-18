@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :todos, dependent: :destroy
   has_one_attached :image
   
   validates :eaten_at, presence: true

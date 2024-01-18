@@ -28,8 +28,8 @@
                   <% end %>
                 </td>
                 <td><%= current_admin.last_name %></td>
-                <td><%= link_to "投稿一覧を見る", admin_user_posts_path(user), class: "btn btn-primary" %></td>
-                <td><%= link_to "todo作成", new_admin_user_todo_path(user), class: "btn btn-success" %></td>
+                <td><%= link_to "投稿一覧へ", admin_user_posts_path(user), class: "btn btn-primary" %></td>
+                <td><%= link_to "todoリストへ", admin_user_todos_path(user), class: "btn btn-success" %></td>
               </tr>
             <% end %>
             <% if @members.empty? %>

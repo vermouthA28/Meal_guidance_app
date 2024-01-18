@@ -2,11 +2,13 @@
 
 <h1><%= @user.full_name %>様のTodoリスト</h1>
 
-<%= link_to '新規作成', new_admin_user_todo_path(@user, @todos), class: "btn btn-primary" %>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Todo</th>
+      <th style="font-size: 20px;">Todo</th>
+      <th></th>
+      <th></th>
 
     </tr>
   </thead>
@@ -16,7 +18,7 @@
     <% @todos.each do |todo| %>
     <tr>
       <td>
-      <%= check_box_tag 'todos[]', todo.id %>
+      
       <%= todo.todo %>
       </td>
       <td><%= link_to '編集', edit_admin_user_todo_path(@user, todo), class: "btn btn-success" %></td>
@@ -26,3 +28,8 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-center">
+  <%= link_to '新規作成', new_admin_user_todo_path(@user, @todos), class: "btn btn-primary" %>
+</div>
+

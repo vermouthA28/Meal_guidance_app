@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
-
-
 # 管理者（栄養士）用
 # URL /admin/sign_in ...
   devise_for :admins, skip: [:registrations, :passwords], controllers: {

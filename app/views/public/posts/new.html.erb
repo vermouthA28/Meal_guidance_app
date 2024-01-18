@@ -3,23 +3,23 @@
    <div class='row'>
      <div class='col-md-8'>
       <table class="table table-striped">
-          <thead>
+        <thead>
+          <tr>
+            <th style="font-size: 30px;">【Todoリスト】</th>
+          </tr>
+        </thead>
+        <tbody>
+           <%= form_with model: @post, local: true do |f| %>
+           <%= hidden_field_tag 'todos[]' %>
+          <% @todos.each do |todo| %>
             <tr>
-              <th>Todo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%# if @todos.present? %>
-              <% @todos.each do |todo| %>
-                <tr>
-                  <td>
-                    <%= check_box_tag 'todos[]', todo.id %>
-                    <%= todo.todo %>
-                  </td>
-                </tr>
-              <% end %>
-            <%# end %>
-
+              <td>
+                <%= check_box_tag 'todos[]', todo.id %>
+                <%= todo.todo %>
+              </td>
+              </tr>
+          <% end %>
+          <%= hidden_field_tag 'checked_todos_count', @checked_todos_count %>
       </table>
       </div>
 
@@ -37,12 +37,14 @@
 <div>
       <h1>【食事記録】</h1>
 
-      <%= form_with model: @post, local: true do |f| %>
+
         <h4>日時</h4>
         <%= f.datetime_field :eaten_at %>
 
         <h4>ジャンル</h4>
-        <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+        <h5 class="meal-spacing">
+          <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+        </h5>
 
 
 
@@ -51,8 +53,9 @@
 
         <h4>画像</h4>
         <%= f.file_field :image, accept: "image/*" %>
-
+        <div class="mt-3">
         <%= f.submit '投稿' %>
+        </div>
       <% end %>
       </div>
 
