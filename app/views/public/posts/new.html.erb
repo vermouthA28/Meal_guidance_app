@@ -5,12 +5,11 @@
       <div class='col-md-8'>
         <table class="table table-striped">
           <thead>
-            <tr>
-              <th style="font-size: 30px;">【Todoリスト】</th>
-            </tr>
+
+              <h2>【Todoリスト】</h2>
+
           </thead>
           <tbody>
-            <%#= f.label :todos_ids, 'Todoリスト', class: 'col-md-4' %>
             <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
               <tr>
                 <td>

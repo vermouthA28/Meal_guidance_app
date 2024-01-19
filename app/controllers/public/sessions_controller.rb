@@ -13,7 +13,7 @@ before_action :user_state, only: [:create]
   def after_sign_in_path_for(resource)
     new_post_path
   end
-  
+
   def destroy
     reset_guest_data if current_user.email == User::GUEST_USER_EMAIL
     super

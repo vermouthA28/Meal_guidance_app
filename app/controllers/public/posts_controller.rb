@@ -17,7 +17,6 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      flash[:danger] = "投稿に失敗しました。"
       render 'new'
     end
   end
