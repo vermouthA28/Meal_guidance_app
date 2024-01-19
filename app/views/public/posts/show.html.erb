@@ -26,17 +26,20 @@
             </td>
           </tr>
           <tr>
-            <th>達成目標</th>
-            <td>
-              <ul>
-                <% @post.post_todos.each do |post_todo| %>
-                  <li>
-                    <%= post_todo.todo.todo %>
-                  </li>
-                <% end %>
-              </ul>
-            </td>
-          </tr>
+            <th>Todo達成</th>
+              <td>
+                <ul>
+                  <% @post.post_todos.each do |post_todo| %>
+                    <li>
+                      <%= post_todo.todo.todo %>
+                    </li>
+                  <% end %>
+                </ul>
+              </td>
+              <tr>
+                <td><%= @post.post_todos.count %>個</td>
+              </tr>
+           
 
           <tr>
             <th>画像</th>

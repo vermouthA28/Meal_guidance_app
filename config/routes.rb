@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :edit, :update, :destroy, :index, :show] do
       collection do
         post 'checked', to: 'posts#checked'
-        get 'count_todos', to: 'posts#count_todos'
+        post '/todos/count', to: 'todos#count'
+
       end
     end
   end

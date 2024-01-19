@@ -1,4 +1,4 @@
-<div class="container  px-5 px-sm-0">
+<div class="container  px-5 px-sm-0 mt-5">
   <div class=" mb-5">
     <div class="col-3 text-center">
       <h1>投稿一覧</h1>
@@ -33,16 +33,15 @@
     <% @posts.each do |post| %>
 
       <div class="flex-item mb-5" style="flex-basis: 25%;">
-      <p>日時</p>
+      <p class="m-0">日時</p>
       <%= link_to post_path(post) do %>
       <span><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>
       <% end %>
 
       <%= form_with model:post do |f| %>
-       <p>ジャンル</p>
-        <span><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></span>
-
+        <span>ジャンル：<%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></span>
       <% end %>
+
       <p>食事内容</p>
       <span><%= content_tag(:ul) do %>
               <% post.meal_content.split("\n").each do |content| %>
@@ -51,28 +50,26 @@
             <% end %>
       </span><br>
 
+      <p>画像</p>
+      <span>
+        <% if post.image.present? %>
+          <%= image_tag post.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no-image', size: "100x100" %>
+        <% end %>
+      </span>
+      <p>コメント数： <%= post.comments.count %></p>
 
-            <p>画像</p>
-            <span>
-              <% if post.image.present? %>
-                <%= image_tag post.image, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no-image', size: "100x100" %>
-              <% end %>
-            </span>
-          </tr>
-
-       <p>コメント数： <%= post.comments.count %></p>
-       <p>選択されたTodoの数は<%= @count %></p>
-       
+      <% if post.post_todos.present? %>
+        <p>Todo達成：<%= post.post_todos.count %></p>
+      <% else %>
+        <p>Todo達成：0</p>
+      <% end %>
       </div>
-
-
-
-
     <% end %>
   </div>
 </div>
+
 
 
 
