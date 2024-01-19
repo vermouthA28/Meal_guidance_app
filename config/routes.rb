@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :posts, only: [:new, :create, :edit, :update, :destroy, :index, :show] do
       collection do
-        post "checked", to: "posts#checked"
+        post 'checked', to: 'posts#checked'
+        get 'count_todos', to: 'posts#count_todos'
       end
     end
   end

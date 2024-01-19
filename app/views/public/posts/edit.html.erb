@@ -1,19 +1,55 @@
 <h1>編集画面</h1>
 
-<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
-  <h4>日時</h4>
-  <%= f.datetime_field :eaten_at %>
 
-  <h4>ジャンル</h4>
-  <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
-<%#= f.select :genre_id, Post.genres.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+<%= render 'layouts/flash' %>
+<div class='container px-5 px-sm-0'>
+  <%= form_with model: @post, local: true do |f| %>
+    <div class='row'>
+      <div class='col-md-8'>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="font-size: 30px;">【Todoリスト】</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= f.label :todos_ids, 'todo', class: 'col-md-4' %>
+            <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
+              <tr>
+                <td>
+                  <%= t.label { t.check_box + t.text } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-  <h4>食事内容</h4>
-  <%= f.text_area :meal_content %>
+    <div class='col-md-4'>
+      <div>
+       <%= render 'layouts/error_messages', resource: @post %>
+      </div>
+      <div>
+        <h1>【食事記録】</h1>
+        <h4>日時</h4>
+        <%= f.datetime_field :eaten_at %>
 
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+        <h4>ジャンル</h4>
+        <h5 class="meal-spacing">
+          <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+        </h5>
+        <h4>
+          <%= f.label :meal_content, "食事内容" %>
+        </h4>
+        <%= f.text_area :meal_content %>
 
-
-  <%= f.submit '編集', class: "btn btn-success ml2" %>
-<% end %>
+        <h4>画像</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+        <div class="mt-3">
+          <%= f.submit '編集', data: { disable_with: '送信中...' } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

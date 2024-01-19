@@ -24,14 +24,7 @@
 
     <div class='col-md-4'>
       <div>
-        <% if @post.errors.any? %>
-          <%= @post.errors.count %>件のエラーが発生しました
-          <ul>
-            <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
+       <%= render 'layouts/error_messages', resource: @post %>
       </div>
       <div>
         <h1>【食事記録】</h1>

@@ -6,14 +6,12 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @user = current_user
     @todos = @user ? @user.todos.all : nil
-    @checked_todos_count = 0
+    
   end
 
   def create
     @user = current_user
     @todos = @user ? @user.todos.all : nil
-    checked_todo_ids = params[:todos]
-    @checked_todos_count = checked_todo_ids.count if checked_todo_ids.present?
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
@@ -30,6 +28,7 @@ class Public::PostsController < ApplicationController
     @genre_id = params[:genre_id]
     @start_date = params[:start_date]
     @end_date = params[:end_date]
+     @selected_todos_count = params[:todo_ids].count if params[:todo_ids]
 
     if @genre_id.present?
       @posts = @posts.where(genre_id: @genre_id).order(eaten_at: :asc)
@@ -40,12 +39,6 @@ class Public::PostsController < ApplicationController
       @posts = @posts.where(eaten_at: start_datetime..end_datetime).order(eaten_at: :asc)
     end
 
-    if params[:todos].present?
-        @checked_todos_count = params[:todos].size
-      else
-        @checked_todos_count = 0
-      end
-
   end
 
   def show
@@ -54,6 +47,8 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @user = current_user
+    @todos = @user ? @user.todos.all : nil
   end
 
   def update
@@ -73,6 +68,10 @@ class Public::PostsController < ApplicationController
   def checked
     @post_todos = Post.new(checked_params)
     @post_todos.save
+  end
+  
+  def count_todos
+    @count = params[:todo_ids].present? ? params[:todo_ids].count : 0
   end
 
 
