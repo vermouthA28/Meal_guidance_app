@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :todos, dependent: :destroy
 
- 
+
   validates :last_name, presence: true
   validates :first_name, presence: true
 
@@ -24,10 +24,9 @@ GUEST_USER_EMAIL = "guest@example.com"
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
       user.last_name = "ゲスト"
       user.first_name = "ユーザー"
-      user.admin_id = params[:admin_id]
+      user.admin_id = Admin.first
     end
   end
 

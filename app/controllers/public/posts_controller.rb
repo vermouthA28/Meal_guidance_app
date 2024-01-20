@@ -6,6 +6,10 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @user = current_user
     @todos = @user ? @user.todos.all : nil
+    
+    if current_user.guest_user?
+      @guest_user = true
+    end
 
   end
 
