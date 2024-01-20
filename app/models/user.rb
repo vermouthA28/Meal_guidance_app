@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :admin
+  belongs_to :admin#, optional: true
   has_many :posts, dependent: :destroy
   has_many :todos, dependent: :destroy
 
@@ -26,7 +26,7 @@ GUEST_USER_EMAIL = "guest@example.com"
       user.password = SecureRandom.urlsafe_base64
       user.last_name = "ゲスト"
       user.first_name = "ユーザー"
-      user.admin_id = Admin.first
+      user.admin_id = Admin.first&.id
     end
   end
 
