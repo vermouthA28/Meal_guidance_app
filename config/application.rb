@@ -17,12 +17,12 @@ module MealGuidanceApp
 
 
 
-    config.after_initialize do
-      guest_user = User.find_or_create_by(email: User::GUEST_USER_EMAIL)
+   # config.after_initialize do
+      #guest_user = User.find_or_create_by(email: User::GUEST_USER_EMAIL)
 
-      guest_user.post.each { |post| post.destroy } if guest_user.posts.any?
+      #guest_user.post.each { |post| post.destroy } if guest_user.posts.any?
 
-    end
+    #end
 
 
 
