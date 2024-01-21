@@ -17,12 +17,10 @@ class User < ApplicationRecord
     super && is_active?
   end
 
-
-
-GUEST_USER_EMAIL = "guest@example.com"
+  GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+    find_or_create_by!(email: User::GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.last_name = "ゲスト"
       user.first_name = "ユーザー"

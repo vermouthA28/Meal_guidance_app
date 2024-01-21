@@ -1,5 +1,3 @@
-<%= flash[:notice] %>
-
 <h1><%= @user.full_name %>様のTodoリスト</h1>
 
 
@@ -18,7 +16,7 @@
     <% @todos.each do |todo| %>
     <tr>
       <td>
-      
+
       <%= todo.todo %>
       </td>
       <td><%= link_to '編集', edit_admin_user_todo_path(@user, todo), class: "btn btn-success" %></td>
@@ -32,4 +30,3 @@
 <div class="d-flex justify-content-center">
   <%= link_to '新規作成', new_admin_user_todo_path(@user, @todos), class: "btn btn-primary" %>
 </div>
-

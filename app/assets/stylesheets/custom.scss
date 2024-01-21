@@ -10,8 +10,13 @@ main {
   background-blend-mode:lighten;
 }
 
- footer {
+footer {
         position: relative;
 }
 
-     
+
+.navbar-text-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

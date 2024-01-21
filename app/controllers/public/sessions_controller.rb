@@ -6,6 +6,7 @@ before_action :user_state, only: [:create]
   def guest_sign_in
     user = User.guest #(admin_id: params[:admin_id])
     sign_in user
+    user.posts.each { |post| post.destroy } if user.posts.any?
     redirect_to new_post_path(user), notice:  "ゲストユーザーでログインしました。"
   end
 

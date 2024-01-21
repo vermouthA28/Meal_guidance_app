@@ -9,13 +9,9 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
-    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-    <!--<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-
     <style>
       body {
         font-family: 'DotGothic16', sans-serif;
@@ -25,39 +21,44 @@
 
   <body>
 
-    <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
-      <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#3C4F91;">
-        <span class="navbar-text text-white">
-        <div class="container">
-        <%= link_to (admin_signed_in? ? admin_root_path : root_path ) do %>
-          <%= image_tag 'logo1.png', size: "150x130" %>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#3C4F91; padding-top: -80px; padding-bottom: -100px;">
+      <div class="container">
+        <%= link_to (admin_signed_in? ? admin_users_path : root_path ) do %>
+          <%= image_tag 'logo1.png', size: "100x100" %>
         <% end %>
 
-
-
-        <%#= link_to 'Meal_guidance_todo', (admin_signed_in? ? admin_root_path : root_path ), class: "logo" %>
-        <ul class="flex">
-          <% if admin_signed_in? %>
-            <li><%= link_to '会員一覧',admin_users_path %></li>
-            <!--<li><%#= link_to 'todo作成', new_admin_user_todo_path %></li>-->
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          <% elsif user_signed_in? %>
-            <p>ようこそ、<%= current_user.full_name %>さん!</p>
-            <li><%= link_to 'ホーム', new_post_path %></li>
-            <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><%= link_to '投稿一覧', posts_path %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <div class="name-section" style="color: white; padding-left: 100px;">
+          <% if user_signed_in? %>
+              <h5>ようこそ、<%= current_user.full_name %>様！</h5>
+          <% elsif admin_signed_in? %>
+              <h5>管理者でログインしています</h5>
           <% else %>
-            <li><%= link_to 'アバウト', home_about_path %></li>
-            <li><%= link_to '投稿一覧', posts_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
-        </span>
-        </ul>
-        </div>
-    </header>
+      </div>
 
+        <div class="ml-auto">
+          <ul class="navbar-nav">
+            <% if admin_signed_in? %>
+              <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %></li>
+            <% elsif user_signed_in? %>
+              <!--<p class="navbar-text text-white navbar-text-center">ようこそ、<%#= current_user.full_name %>さん!</p>-->
+              <li class="nav-item"><%= link_to 'ホーム', new_post_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-white' %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to 'アバウト', home_about_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-white' %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-white' %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
     <main>
       <div class="container">
