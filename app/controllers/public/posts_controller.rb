@@ -6,7 +6,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @user = current_user
     @todos = @user ? @user.todos.all : nil
-    
+
     if current_user.guest_user?
       @guest_user = true
     end
@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
   def index
 
     @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
+    @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc).page(params[:page])
     @genre_id = params[:genre_id]
     @start_date = params[:start_date]
     @end_date = params[:end_date]

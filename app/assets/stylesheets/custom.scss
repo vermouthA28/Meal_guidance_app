@@ -3,17 +3,18 @@ main {
   justify-content: center;
   align-items: center;
   padding-top: 20px;
-  height: 100vh;
+  height: 100vh; /* 画面の高さいっぱいに背景画像を表示 */
 
   background-image: image-url("dot.jpg");
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
+  background-repeat: no-repeat;
+  background-size: cover; /* 背景画像が画面いっぱいに広がるように表示 */
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
 }
 
 footer {
-        position: relative;
+  position: relative;
 }
-
 
 .navbar-text-center {
   text-align: center;
