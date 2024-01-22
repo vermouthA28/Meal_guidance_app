@@ -1,39 +1,39 @@
-<%= render 'layouts/flash' %>
 
 <section class="inner">
 	<h2 class="section-ttl">マイページ</h2>
-
-	<h3>
-		登録情報
+	<div class="row col-8 mt-2 mx-auto">
+  	<div class="col-4 ">
+		<h3>登録情報</h3>
+	 	</div>
 		<% if @user.email != "guest@example.com" %>
 			<% unless @user.guest_user? %>
-			<div class="row">
-			  <%#= link_to "",edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
-			</div>
-
 			<% end %>
-		<%= link_to "編集する", edit_user_path(current_user), class: "btn btn-success ml2" %>
-		<%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-success ml2" %>
-
+				<div class="row mb-4 ml-2">
+				  <div class="col">
+				    <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-block text-nowrap" %>
+				  </div>
+				  <div class="col">
+				    <%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-primary btn-block text-nowrap" %>
+				  </div>
+				</div>
 		<% end %>
-	</h3>
-	 <table class="table table-bordered">
+
+		<table class="table table-bordered table-hover">
 		<tbody>
 			<tr>
-				<th>名前</th>
-				<td><%= @user.last_name %><%= @user.first_name %></td>
+				<th class="table-secondary col-4">名前</th>
+				<td	class="bg-white"><%= @user.last_name %><%= @user.first_name %></td>
 			</tr>
 
 			<tr>
-				<th>メールアドレス</th>
-				<td colspan="2"><%= @user.email %></td>
+				<th class="table-secondary col-4">メールアドレス</th>
+				<td class="bg-white"><%= @user.email %></td>
 			</tr>
 
 		</tbody>
-	</table>
+		</table>
+	</div>
 </section>
-
-
 
 
 

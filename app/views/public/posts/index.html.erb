@@ -1,4 +1,4 @@
-<h1>投稿一覧</h1>
+<h2>食事記録一覧</h2>
 
 <!--絞り込み機能-->
   <%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
@@ -25,8 +25,8 @@
 <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 80vh;">
   <div class="d-flex flex-wrap justify-content-around">
     <% @posts.each do |post| %>
-      <div class="flex-item mb-4 mx-4">
-        <div class="card" style="margin: 20;">
+      <div class="flex-item mb-4 mx-4" style="width: 220px;">
+        <div class="card" style="margin: 100; height: 500px; overflow: hidden;">
           <% if post.image.present? %>
             <%= image_tag post.image, size: "150x150", class: "card-img-top" %>
           <% else %>
@@ -39,7 +39,7 @@
             <% end %>
 
             <%= form_with model:post do |f| %>
-              <h6 class="genre-block">ジャンル： <%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></h6>
+              <h6 class="card-text">ジャンル： <%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></h6>
             <% end %>
 
             <h5 class="card-title">食事内容</h5>
@@ -49,7 +49,7 @@
                   <%= content_tag(:li, content) %>
                 <% end %>
               <% end %>
-            </span><br>
+            </span>
 
 
             <p>コメント数： <%= post.comments.count %></p>
@@ -63,10 +63,10 @@
         </div>
       </div>
     <% end %>
-      <div class="text-center">
-        <%= paginate @posts, theme: 'bootstrap-5' %>
-      </div>
   </div>
+    <div class="text-center">
+      <%= paginate @posts, theme: 'bootstrap-5' %>
+    </div>
 </div>
 
 

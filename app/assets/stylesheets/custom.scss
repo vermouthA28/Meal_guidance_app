@@ -3,7 +3,10 @@ main {
   justify-content: center;
   align-items: center;
   padding-top: 20px;
-  height: 100vh; /* 画面の高さいっぱいに背景画像を表示 */
+  height: 100vh;
+  position: relative;
+  min-height: calc(100vh - footerの高さ);
+  overflow-y: auto;
 
   background-image: image-url("dot.jpg");
   background-repeat: no-repeat;
@@ -12,8 +15,15 @@ main {
   background-blend-mode: lighten;
 }
 
-footer {
-  position: relative;
+
+
+footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+
+ position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }
 
 .navbar-text-center {
