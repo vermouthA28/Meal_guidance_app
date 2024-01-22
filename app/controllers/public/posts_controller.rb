@@ -26,8 +26,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-
-    @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc)
     @posts = Post.where(user_id: current_user.id).order(eaten_at: :asc).page(params[:page])
     @genre_id = params[:genre_id]
     @start_date = params[:start_date]
@@ -49,6 +47,9 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 
   def edit

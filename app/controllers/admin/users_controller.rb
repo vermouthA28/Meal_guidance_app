@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
+
   def index
     @members = current_admin.users
 
@@ -13,17 +14,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_admin.users.find_by(id: params[:id])
   end
 
   def update
-     @user = User.find(params[:id])
+    @user = current_admin.users.find_by(id: params[:id])
       if @user.update(user_params)
         if user_params[:is_active] == "0" && @user.is_active
-          @user.update(is_active: false)
           flash[:notice] = "ユーザーを退会させました。"
         elsif user_params[:is_active] == "1" && !@user.is_active
-          @user.update(is_active: true)
           flash[:notice]= "ユーザーを有効化しました。"
         else
           flash[:notice] = "会員ステータスを更新しました。"
