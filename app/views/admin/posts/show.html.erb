@@ -51,18 +51,11 @@
             </td>
           </tr>
           </table>
-            <div style="margin-left: 50px;">
-              <%= render "admin/comments/form", post: @post, comment: @comment %>
-            </div>
+          <div style="margin-left: 50px;">
+            <%= render "admin/comments/form", post: @post, comment: @comment %>
+            <%= link_to '一覧へ戻る', admin_user_posts_path(@user), class: "btn btn-primary mt-5"  %>
+          </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= render "admin/comments/index", post: @post %>
     </div>
   </div>
 </div>
