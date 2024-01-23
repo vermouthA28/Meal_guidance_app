@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col">
       <h4 class="my-5"><%= @user.full_name %>様の会員情報編集</h4>
+      <%= render 'layouts/error_messages', resource: @user %>
       <table class="table table-borderless">
-        <%#= form_with model: [:admin, @user] do |f| %>
         <%= form_with(model: @user, url: admin_user_path(@user), method: :patch) do |f| %>
         <tr>
           <td>会員ID</td>
@@ -14,8 +14,6 @@
         <tr>
           <td>氏名</td>
           <td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
-          <td><%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name, :placeholder =>"#{@customer.first_name}" %></td>
-					<td><%= f.label :last_name, "(名)", class: "customer_name" %> <%= f.text_field :last_name, :placeholder =>"#{@customer.last_name}" %></td>
         </tr>
 
         <tr>

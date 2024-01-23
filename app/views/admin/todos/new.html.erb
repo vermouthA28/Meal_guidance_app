@@ -1,42 +1,35 @@
 
-<h1><%= @user.full_name %>様のTodoリスト作成</h1>
+<h2><%= @user.full_name %>様のTodoリスト作成</h2>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th style="font-size: 20px;">Todo</th>
-     
-
+      <th style="font-size: 20px;">Todoリスト</th>
     </tr>
   </thead>
-
-
   <tbody>
     <% @todos.each do |todo| %>
     <tr>
       <td>
-      
       <%= todo.todo %>
       </td>
-     
     </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<%= link_to '一覧へ戻る', admin_user_todos_path(@user), class: "btn btn-info"  %>
-<div class="d-flex justify-content-center">
-<%= form_with model: @todo, url: admin_user_todos_path(@user) do |f| %>
-<div class="field">
-  <%= f.label :Todo %><br>
-  <%= f.text_area :todo %>
-</div>
+  <%= link_to '一覧へ戻る', admin_user_todos_path(@user), class: "btn btn-primary mb-3"  %>
+  <div class="justify-content-center">
+    <%= form_with model: @todo, url: admin_user_todos_path(@user) do |f| %>
+    <%= render 'layouts/error_messages', resource: @todo %>
+  <div class="form-group">
+    <%= f.label :todo, class: "form-label h5" %><br>
+    <%= f.text_area :todo, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit :投稿 %>
+  </div>
+    <% end %>
 
-<div class="actions">
-  <%= f.submit :投稿 %>
-</div>
-<% end %>
-
-</div>
-</div>
+  </div>

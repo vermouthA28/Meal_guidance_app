@@ -1,19 +1,20 @@
 class Admin::TodosController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @user = User.find(params[:user_id])
     @todos = @user.todos.all
   end
-  
+
   def new
     @todo = Todo.new
     @user = User.find(params[:user_id])
     @todos = @user.todos.all
   end
-  
+
   def create
     @user = User.find(params[:user_id])
+    @todos = @user.todos.all
     @todo = @user.todos.build(todo_params)
     @todo.admin = current_admin
     if @todo.save
@@ -27,7 +28,7 @@ class Admin::TodosController < ApplicationController
     @user = User.find(params[:user_id])
     @todo = @user.todos.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:user_id])
     @todo = Todo.find(params[:id])
@@ -37,7 +38,7 @@ class Admin::TodosController < ApplicationController
       render'edit'
     end
   end
-  
+
   def destroy
     @user = User.find(params[:user_id])
     @todo = Todo.find(params[:id])
@@ -49,12 +50,12 @@ class Admin::TodosController < ApplicationController
 
   end
 
-  
+
   private
   def todo_params
     params.require(:todo).permit(:todo, :user_id, :admin_id)
   end
-  
-  
-  
+
+
+
 end

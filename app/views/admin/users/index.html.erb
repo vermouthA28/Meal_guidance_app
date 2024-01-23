@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3 class="my-5">会員一覧</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>会員ステータス</th>
+              <th>担当</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= link_to user.full_name, admin_user_path(user) %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <% if user.is_active %>
+                    <%= "有効" %>
+                  <% else %>
+                    <%= "退会" %>
+                  <% end %>
+                </td>
+                <td><%= current_admin.last_name %></td>
+                <td><%= link_to "投稿一覧へ", admin_user_posts_path(user), class: "btn btn-primary" %></td>
+                <td><%= link_to "todoリストへ", admin_user_todos_path(user), class: "btn btn-success" %></td>
+              </tr>
+            <% end %>
+            <% if @members.empty? %>
+              <tr>
+                <td colspan="6">担当のユーザーはありません</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>

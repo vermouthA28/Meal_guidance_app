@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-5"><%= @user.full_name %>様の投稿一覧</h4>
+      <h3 class="my-5"><%= @user.full_name %>様の投稿一覧</h3>
         <table class="table">
           <thead>
             <tr>
 
-            
+
               <th>日時</th>
               <th>ジャンル</th>
               <th>食事内容</th>
@@ -14,7 +14,7 @@
               <th>コメント</th>
             </tr>
           </thead>
-          
+
           <% @posts.each do |post| %>
             <tr>
               <!--<td><%#= link_to post.user.full_name, admin_user_path(user_id: post.user.id, id: post.id) %></td>-->
@@ -41,7 +41,7 @@
                    <strong style="color: red;">未</strong>
                  <% end %>
                </td>
-                  
+
             </tr>
           <% end %>
         </table>
