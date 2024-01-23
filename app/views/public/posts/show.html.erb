@@ -1,23 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-5">食事内容詳細</h4>
+      <h3 class="my-5">食事内容詳細</h3>
       <div class="d-flex align-items-center">
-        <table class="table table-borderless">
+        <table class="table table-bordered bg-white">
           <tr>
-            <th>日時</th>
+            <th class="table-secondary">日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
           </tr>
-
           <tr>
             <%= form_with model:@post do |f| %>
-             <th>ジャンル</th>
+             <th class="table-secondary">ジャンル</th>
               <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
             <% end %>
           </tr>
 
           <tr>
-            <th>食事内容</th>
+            <th class="table-secondary">食事内容</th>
             <td><%= content_tag(:ul) do %>
                     <% @post.meal_content.split("\n").each do |content| %>
                       <%= content_tag(:li, content) %>
@@ -26,23 +25,23 @@
             </td>
           </tr>
           <tr>
-            <th>Todo達成</th>
+            <th class="table-secondary">Todo達成</th>
               <td>
-                <ul>
-                  <% @post.post_todos.each do |post_todo| %>
-                    <li>
-                      <%= post_todo.todo.todo %>
-                    </li>
-                  <% end %>
-                </ul>
+                <% if @post.post_todos.present? %>
+                  <ul>
+                    <% @post.post_todos.each do |post_todo| %>
+                      <li>
+                        <%= post_todo.todo.todo %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  なし
+                <% end %>
               </td>
-              <tr>
-                <td><%= @post.post_todos.count %>個</td>
-              </tr>
-           
-
+          </tr>
           <tr>
-            <th>画像</th>
+            <th class="table-secondary">画像</th>
             <td>
               <% if @post.image.present? %>
                 <%= image_tag @post.image, size: "200x200" %>
@@ -51,32 +50,28 @@
               <% end %>
             </td>
           </tr>
-          <tr>
-          <td><%= link_to "編集", edit_post_path(@post), class: "btn btn-success ml2" %></td>
-          <td><%= link_to "削除", post_path(@post), method: :delete,class: "btn btn-danger ml2" %></td>
-          </tr>
-        </table>
-
-      <table>
-        <tbody>
-          <%  @post.comments.each do |comment| %>
-
-          <tr>
-            <td><%= comment.comment %></td>
-          </tr>
-           <tr>
-            <td>
-              <%= link_to admin_user_post_path(@post.user, @post) do %>
-                <%= comment.admin.last_name %>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-
-      </table>
-
+          </table>
+          <div class="ml-2"> <!-- マージンを追加して横並びに調整 -->
+          <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary ml-2 mb-2" %>
+          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger ml-2" %>
+          </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+    <div class="comments">
+      <h5>コメント</h5>
+  <% @post.comments.each do |comment| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="card-text">
+          <i class="fa fa-user"></i> <strong><%= comment.admin.last_name %></strong>: <%= comment.comment %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+

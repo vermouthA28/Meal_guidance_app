@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:show, :edit, :update]
   # before_action :user_admin, only: [:index]
 
   def new
@@ -47,9 +48,6 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    unless @post.user.id == current_user.id
-      redirect_to posts_path
-    end
   end
 
   def edit
@@ -87,6 +85,13 @@ class Public::PostsController < ApplicationController
 
   def checked_params
     params.require(:post).permit(todo_ids: []).merge(user_id: current_user.id)
+  end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless current_user.guest_user? || post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 
 end

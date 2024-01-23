@@ -1,4 +1,4 @@
-<h1>編集画面</h1>
+<h2>編集画面</h2>
 
 
 <%= render 'layouts/flash' %>
@@ -13,12 +13,18 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.label :todos_ids, 'todo', class: 'col-md-4' %>
-            <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
+            <% if @todos.present? %>
+
+              <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
+                <tr>
+                  <td>
+                    <%= t.label { t.check_box + t.text } %>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
               <tr>
-                <td>
-                  <%= t.label { t.check_box + t.text } %>
-                </td>
+                <td>ToDoリストはありません。</td>
               </tr>
             <% end %>
           </tbody>
