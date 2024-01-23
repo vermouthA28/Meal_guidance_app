@@ -14,6 +14,8 @@
         <tr>
           <td>氏名</td>
           <td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
+          <td><%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name, :placeholder =>"#{@customer.first_name}" %></td>
+					<td><%= f.label :last_name, "(名)", class: "customer_name" %> <%= f.text_field :last_name, :placeholder =>"#{@customer.last_name}" %></td>
         </tr>
 
         <tr>
