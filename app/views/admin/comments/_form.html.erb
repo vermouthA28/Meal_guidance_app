@@ -1,5 +1,5 @@
 <%= form_with model: [ post, comment], url: admin_user_post_comments_path(post.user, post) do |f| %>
-  <%= f.text_area :comment, rows:'10', placeholder: "コメントをここに", class: "w-100" %>
+  <%= f.text_area :comment, rows: '5', cols: '70', placeholder: "コメントをここに", class: "w-100" %>
   <%= f.submit "送信" %>
 <% end %>
 

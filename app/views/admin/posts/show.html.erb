@@ -3,52 +3,66 @@
     <div class="col">
       <h4 class="my-5"><%= @post.user.full_name %>様の食事内容詳細</h4>
       <div class="d-flex align-items-center">
-        <table class="table table-borderless">
-          
-          <tr>
-            <th>日時</th>
+        <table class="table table-bordered bg-white">
+        <tr>
+            <th class="table-secondary">日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
           </tr>
-
           <tr>
-            <th>ジャンル</th>
-            <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}", locale: :ja) %></td>
+            <%= form_with model:@post do |f| %>
+             <th class="table-secondary">ジャンル</th>
+              <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
+            <% end %>
           </tr>
 
           <tr>
-            <th>食事内容</th>
-            <td>
-              <%= content_tag(:ul) do %>
-                <% @post.meal_content.split("\n").each do |content| %>
-                  <%= content_tag(:li, content) %>
+            <th class="table-secondary">食事内容</th>
+            <td><%= content_tag(:ul) do %>
+                    <% @post.meal_content.split("\n").each do |content| %>
+                      <%= content_tag(:li, content) %>
+                    <% end %>
+                  <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class="table-secondary">Todo達成</th>
+              <td>
+                <% if @post.post_todos.present? %>
+                  <ul>
+                    <% @post.post_todos.each do |post_todo| %>
+                      <li>
+                        <%= post_todo.todo.todo %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  なし
                 <% end %>
+              </td>
+          </tr>
+          <tr>
+            <th class="table-secondary">画像</th>
+            <td>
+              <% if @post.image.present? %>
+                <%= image_tag @post.image, size: "300x300" %>
+              <% else %>
+                <%= image_tag 'no-image', size: "200x200" %>
               <% end %>
             </td>
           </tr>
-
-          <tr>
-            <th>画像</th>
-            <td>
-               <% if @post.image.present? %>
-                 <%= image_tag @post.image, size: "200x200" %>
-               <% else %>
-                  画像がありません
-               <% end %>
-            </td>
-          </tr>
-        
-        </table>
-      
-        <div class="col">
-          <%= render "admin/comments/index", post: @post, comment: @comment %>
-        </div>
-        
-        <div>
-          <%= render "admin/comments/form", post: @post, comment: @comment %>
-        </div>
-        
-         
+          </table>
+            <div style="margin-left: 50px;">
+              <%= render "admin/comments/form", post: @post, comment: @comment %>
+            </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render "admin/comments/index", post: @post %>
     </div>
   </div>
 </div>

@@ -1,24 +1,14 @@
-<table>
-  <tbody>
-    <%  post.comments.each do |comment| %>
-    <tr>
-      <td>
-        <%= link_to admin_user_post_path(post.user, post) do %>
-          <%= comment.admin.last_name %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td><%= comment.comment %></td>
-    </tr>
-    <tr>
-      <td>
-        <% if comment.admin == current_admin %>
-          <%= link_to "Destroy", admin_user_post_comment_path(post.user, post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
 
+
+    <%  post.comments.each do |comment| %>
+      <% if comment.admin == current_admin %>
+       <h5>コメント<%= link_to "削除", admin_user_post_comment_path(post.user, post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %></h5>
+      <% end %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="card-text">
+          <strong><%= comment.admin.last_name %></strong>: <%= comment.comment %>
+        </p>
+      </div>
+    </div>
+  <% end %>
