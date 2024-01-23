@@ -1,25 +1,27 @@
 <div class="container">
-  <div class="row">
+  <div class="row col-8 mt-2 mx-auto">
     <div class="col">
-      <h4 class="my-5"><%= @user.full_name %>様の会員詳細</h4>
+      <h4 class="mt-5 mb-4"><%= @user.full_name %>様の会員詳細
+        <%= link_to "編集する", edit_admin_user_path, class:"btn btn-primary ml-3", data: {"turbolinks" => false } %>
+      </h4>
       <div class="d-flex align-items-center">
-        <table class="table table-borderless">
+        <table class="table table-borderlered bg-white">
           <tr>
-            <th>会員ID</td>
+            <th class="table-primary col-4">会員ID</td>
             <td><%= @user.id %></td>
           </tr>
           <tr>
-            <th>氏名</td>
+            <th class="table-primary col-4">氏名</td>
             <td><%= @user.last_name %>　<%= @user.first_name %></td>
           </tr>
 
           <tr>
-            <th>メールアドレス</th>
+            <th class="table-primary col-4">メールアドレス</th>
             <td><%= @user.email %></td>
           </tr>
 
           <tr>
-            <th>会員ステータス</th>
+            <th class="table-primary col-4">会員ステータス</th>
             <td>
               <% if @user.is_active %>
                 <span class="text-success">有効</span>
@@ -27,10 +29,6 @@
                 <span class="text-secondary">退会</span>
               <% end %>
                </td>
-
-
-            <td><%= link_to "編集する", edit_admin_user_path, class:"btn btn-success", data: {"turbolinks" => false } %>
-            </td>
           </tr>
         </table>
       </div>

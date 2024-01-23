@@ -5,18 +5,18 @@
       <div class="d-flex align-items-center">
         <table class="table table-bordered bg-white">
         <tr>
-            <th class="table-secondary">日時</th>
+            <th class="table-primary">日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
           </tr>
           <tr>
             <%= form_with model:@post do |f| %>
-             <th class="table-secondary">ジャンル</th>
+             <th class="table-primary">ジャンル</th>
               <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
             <% end %>
           </tr>
 
           <tr>
-            <th class="table-secondary">食事内容</th>
+            <th class="table-primary">食事内容</th>
             <td><%= content_tag(:ul) do %>
                     <% @post.meal_content.split("\n").each do |content| %>
                       <%= content_tag(:li, content) %>
@@ -25,7 +25,7 @@
             </td>
           </tr>
           <tr>
-            <th class="table-secondary">Todo達成</th>
+            <th class="table-primary">Todo達成</th>
               <td>
                 <% if @post.post_todos.present? %>
                   <ul>
@@ -41,7 +41,7 @@
               </td>
           </tr>
           <tr>
-            <th class="table-secondary">画像</th>
+            <th class="table-primary">画像</th>
             <td>
               <% if @post.image.present? %>
                 <%= image_tag @post.image, size: "300x300" %>
@@ -56,6 +56,14 @@
             <%= link_to '一覧へ戻る', admin_user_posts_path(@user), class: "btn btn-primary mt-5"  %>
           </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render "admin/comments/index", post: @post %>
     </div>
   </div>
 </div>

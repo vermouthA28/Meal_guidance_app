@@ -4,3 +4,11 @@
 .meal-spacing {
      margin-bottom: 20px; /* 朝食や昼食の下に10ピクセルのマージンを追加する */
    }
+
+table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ADCDEC;
+  }
+
+  table.table-striped tbody tr:nth-of-type(even) {
+    background-color: white;
+  }

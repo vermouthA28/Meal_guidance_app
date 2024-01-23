@@ -1,22 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3 class="my-5">食事内容詳細</h3>
+      <h3 class="mt-5 mb-3">食事内容詳細
+         <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary ml-2" %>
+          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger ml-2" %>
+      </h3>
       <div class="d-flex align-items-center">
         <table class="table table-bordered bg-white">
           <tr>
-            <th class="table-secondary">日時</th>
+            <th class="table-primary">日時</th>
             <td><%= @post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></td>
           </tr>
           <tr>
             <%= form_with model:@post do |f| %>
-             <th class="table-secondary">ジャンル</th>
+             <th class="table-primary">ジャンル</th>
               <td><%= I18n.t("enums.post.genre_id.#{@post.genre_id}") %></td>
             <% end %>
           </tr>
 
           <tr>
-            <th class="table-secondary">食事内容</th>
+            <th class="table-primary">食事内容</th>
             <td><%= content_tag(:ul) do %>
                     <% @post.meal_content.split("\n").each do |content| %>
                       <%= content_tag(:li, content) %>
@@ -25,7 +28,7 @@
             </td>
           </tr>
           <tr>
-            <th class="table-secondary">Todo達成</th>
+            <th class="table-primary">Todo達成</th>
               <td>
                 <% if @post.post_todos.present? %>
                   <ul>
@@ -41,7 +44,7 @@
               </td>
           </tr>
           <tr>
-            <th class="table-secondary">画像</th>
+            <th class="table-primary">画像</th>
             <td>
               <% if @post.image.present? %>
                 <%= image_tag @post.image, size: "200x200" %>
@@ -50,11 +53,7 @@
               <% end %>
             </td>
           </tr>
-          </table>
-          <div class="ml-2"> <!-- マージンを追加して横並びに調整 -->
-          <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary ml-2 mb-2" %>
-          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger ml-2" %>
-          </div>
+        </table>
       </div>
     </div>
   </div>
