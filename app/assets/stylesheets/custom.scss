@@ -6,7 +6,7 @@ main {
   height: 100vh;
   position: relative;
   min-height: calc(100vh - 100px); /* フッターの高さに応じて適切な値を指定 */
-  overflow-y: auto;
+  // overflow-y: auto;
 
   background-image: image-url("dot.jpg");
   background-repeat: no-repeat;
@@ -14,17 +14,28 @@ main {
   background-color: rgba(255, 255, 255, 0.8);
   background-blend-mode: lighten;
 }
-body {
-  overflow-y: scroll;
-}
 
+
+
+// body {
+//   overflow-y: scroll;
+// }
+
+header {
+
+  height: 110px;
+
+}
 footer {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
-  text-align: center;
+  background-color: #f5f5f5; /* 適切な色に変更してください */
   padding: 30px 0;
+  z-index: 999; /* 必要に応じて指定してください */
 }
+
 
 .container {
     padding-bottom: 30px; /* フッターの高さに応じて適切な値を指定 */
