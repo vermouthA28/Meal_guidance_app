@@ -1,3 +1,5 @@
+
+
 main {
   display: flex;
   justify-content: center;
@@ -6,26 +8,20 @@ main {
   height: 100vh;
   position: relative;
   min-height: calc(100vh - 100px); /* フッターの高さに応じて適切な値を指定 */
-  // overflow-y: auto;
+  overflow-y: auto;
 
   background-image: image-url("dot.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.8);
   background-blend-mode: lighten;
+
 }
-
-
-
-// body {
-//   overflow-y: scroll;
-// }
 
 header {
-
   height: 110px;
-
 }
+
 footer {
   position: fixed;
   bottom: 0;
