@@ -1,10 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3 class="mt-5 mb-3">食事内容詳細
-         <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary ml-2" %>
-         <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger ml-2" %>
-      </h3>
+      <h2 class="mt-5 mb-3">食事内容詳細</h2>
       <div class="d-flex align-items-center">
         <table class="table table-bordered bg-white">
           <tr>
@@ -57,12 +54,20 @@
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-4">
+      <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="col-4">
+      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger btn-block" %>
+    </div>
+  </div>
 </div>
 
-<div class="comments">
+<div class="comments mb-5">
   <h5>コメント</h5>
   <% @post.comments.each do |comment| %>
-    <div class="card mb-3">
+    <div class="card mb-5">
       <div class="card-body">
         <p class="card-text">
           <i class="fa fa-user"></i> <strong><%= comment.admin.last_name %></strong>: <%= comment.comment %>

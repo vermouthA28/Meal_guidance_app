@@ -3,8 +3,9 @@
     <div class="col-md-12">
 
       <h4>パスワード再設定</h4>
+      
+      <%=  form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <%= f.hidden_field :reset_password_token %>
 

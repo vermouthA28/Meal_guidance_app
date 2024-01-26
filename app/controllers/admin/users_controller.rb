@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @members = current_admin.users.page(params[:page]).per(6)
+   
   end
 
   def show

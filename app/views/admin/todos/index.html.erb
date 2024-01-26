@@ -1,14 +1,6 @@
 <h2><%= @user.full_name %>様のTodoリスト</h2>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th style="font-size: 20px;">Todoリスト</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<table class="table table-striped mt-5">
   <tbody>
     <% @todos.each do |todo| %>
       <tr>

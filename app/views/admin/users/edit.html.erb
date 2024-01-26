@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-5"><%= @user.full_name %>様の会員情報編集</h4>
+      <h2 class="my-5"><%= @user.full_name %>様の会員情報編集</h2>
       <%= render 'layouts/error_messages', resource: @user %>
       <table class="table table-borderless">
         <%= form_with(model: @user, url: admin_user_path(@user), method: :patch) do |f| %>

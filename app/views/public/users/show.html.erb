@@ -4,18 +4,6 @@
     <div class="col-4">
       <h3>登録情報</h3>
     </div>
-
-    <% if @user.email != "guest@example.com" %>
-      <div class="row mb-4 ml-2">
-        <div class="col">
-          <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-block text-nowrap" %>
-        </div>
-        <div class="col">
-          <%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-primary btn-block text-nowrap" %>
-        </div>
-      </div>
-    <% end %>
-
     <table class="table table-bordered bg-white">
       <tbody>
         <tr>
@@ -31,3 +19,15 @@
     </table>
   </div>
 </section>
+
+ <% if @user.email != "guest@example.com" %>
+      <div class="d-flex justify-content-center">
+        <div class="col-4">
+          <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-block" %>
+        </div>
+        <div class="col-4">
+          <%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+

@@ -2,9 +2,9 @@
   <%= form_with model: @post, local: true do |f| %>
     <div class='row'>
       <div class='col-md-8'>
-        <table class="table table-striped">
+        <table class="table table-striped" >
           <thead class="table-striped-primary">
-            <h2>【Todoリスト】</h2>
+            <h2>Todoリスト</h2>
           </thead>
           <tbody>
             <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
@@ -23,23 +23,23 @@
           <%= render 'layouts/error_messages', resource: @post %>
         </div>
         <div>
-          <h1>【食事記録】</h1>
+          <h1>食事記録</h1>
           <h4>日時</h4>
           <div>
             <%= f.datetime_field :eaten_at %>
           </div>
 
           <div class="mt-3">
-            <h4>ジャンル</h4>
-            <h5 class="meal-spacing">
-              <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
-            </h5>
+          <h4 >ジャンル</h4>
+          <h5 class="meal-spacing">
+            <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+          </h5>
           </div>
 
           <h4>
             <%= f.label :meal_content, "食事内容" %>
           </h4>
-          <%= f.text_area :meal_content, rows: 5, cols: 35 %>
+            <%= f.text_area :meal_content, rows: 5, cols: 35 %>
 
           <h4>画像</h4>
           <%= f.file_field :image, accept: "image/*" %>
@@ -51,3 +51,4 @@
     </div>
   <% end %>
 </div>
+
