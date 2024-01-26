@@ -2,10 +2,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-
-
-
-
       <%= form_with model: @todo, url: admin_user_todo_path(@user, @todo), class: "mt-5" do |f| %>
         <div class="form-group">
           <%= f.label :todo, class: "form-label h4" %>
@@ -21,3 +17,4 @@
     </div>
   </div>
 </div>
+

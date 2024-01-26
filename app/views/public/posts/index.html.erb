@@ -1,7 +1,7 @@
 <h2>食事記録一覧</h2>
 
-<!--絞り込み機能-->
-  <%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
+<!-- 絞り込み機能 -->
+<%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
   <div class="form-row align-items-end">
     <div class="col-4">
       <%= f.label :genre_id, "ジャンル" %>
@@ -19,9 +19,9 @@
       <%= f.submit "絞り込み", class: "btn btn-primary" %>
     </div>
   </div>
-  <% end %>
+<% end %>
 
-<!--投稿一覧-->
+<!-- 投稿一覧 -->
 <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 80vh;">
   <div class="d-flex flex-wrap justify-content-around">
     <% @posts.each do |post| %>
@@ -32,7 +32,7 @@
           <% else %>
             <%= image_tag 'no-image.jpg', size: "150x150", class: "card-img-top" %>
           <% end %>
-          <div class="card-body"  style="line-height: normal;">
+          <div class="card-body" style="line-height: normal;">
             <h5 class="card-title">日時</h5>
             <%= link_to post_path(post) do %>
               <span class="date-time-block"><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>
@@ -67,8 +67,3 @@
     <%= paginate @posts, theme: 'bootstrap-5' %>
   </div>
 </div>
-
-
-
-
-

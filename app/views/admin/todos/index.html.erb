@@ -1,32 +1,26 @@
 <h2><%= @user.full_name %>様のTodoリスト</h2>
 
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th style="font-size: 20px;">Todoリスト</th>
       <th></th>
       <th></th>
-
     </tr>
   </thead>
 
-
   <tbody>
     <% @todos.each do |todo| %>
-    <tr>
-      <td>
-
-      <%= todo.todo %>
-      </td>
-      <td><%= link_to '編集', edit_admin_user_todo_path(@user, todo), class: "btn btn-success" %></td>
-      <td><%= link_to '削除', admin_user_todo_path(@user, todo), method: :delete, data: { confirm: '本当に削除しますか?' } , class: "btn btn-danger"%></td>
-
-    </tr>
+      <tr>
+        <td>
+          <%= todo.todo %>
+        </td>
+        <td><%= link_to '編集', edit_admin_user_todo_path(@user, todo), class: "btn btn-success" %></td>
+        <td><%= link_to '削除', admin_user_todo_path(@user, todo), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
-
 
 <div class="d-flex justify-content-center">
   <%= link_to '新規作成', new_admin_user_todo_path(@user, @todos), class: "btn btn-primary" %>

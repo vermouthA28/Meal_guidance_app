@@ -1,8 +1,8 @@
-
 <%  post.comments.each do |comment| %>
   <% if comment.admin == current_admin %>
     <h5>コメント<%= link_to "削除", admin_user_post_comment_path(post.user, post, comment), method: :delete, class: "btn btn-sm btn-danger float-end ml-3" %></h5>
   <% end %>
+  
   <div class="card mb-3">
     <div class="card-body">
       <p class="card-text">

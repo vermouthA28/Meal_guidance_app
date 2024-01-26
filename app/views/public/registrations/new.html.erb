@@ -1,65 +1,55 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="box1 d-flex justify-content-center align-items-center">
-      <div class="box-inner ">
+      <div class="box-inner">
         <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
+          <%= render "public/shared/error_messages", resource: resource %>
 
-    <h2>新規登録</h2>
+          <h2>新規登録</h2>
 
-      <div class="box-name">
-        <%= f.label :last_name, "名前（姓）", class: "user_name" %><br />
-        <%= f.text_field :last_name, autofocus: true, :placeholder =>"令和" %>
-      </div>
-      <div class="box-name">
-        <%= f.label :first_name, "名前（名）", class: "user_name" %><br />
-        <%= f.text_field :first_name, :placeholder =>"太郎" %>
-      </div>
+          <div class="box-name">
+            <%= f.label :last_name, "名前（姓）", class: "user_name" %><br />
+            <%= f.text_field :last_name, autofocus: true, :placeholder =>"令和" %>
+          </div>
+          <div class="box-name">
+            <%= f.label :first_name, "名前（名）", class: "user_name" %><br />
+            <%= f.text_field :first_name, :placeholder =>"太郎" %>
+          </div>
 
-      <div class="box-email">
-        <%= f.label :email, "Eメール" %><br />
-        <%= f.email_field :email, autocomplete: "email", :size => "40" %>
-      </div>
+          <div class="box-email">
+            <%= f.label :email, "Eメール" %><br />
+            <%= f.email_field :email, autocomplete: "email", :size => "40" %>
+          </div>
 
-      <div class="box-password">
-        <%= f.label :password, "パスワード" %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %>文字以上)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
+          <div class="box-password">
+            <%= f.label :password, "パスワード" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %>文字以上)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
 
-      <div class="box-password">
-        <%= f.label :password_confirmation, "パスワード（確認）" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+          <div class="box-password">
+            <%= f.label :password_confirmation, "パスワード（確認）" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
 
-      <div class="box-spacing">
-        <%= f.label :admin_id, "担当栄養士" %><br />
-        <%= f.collection_select :admin_id, Admin.all, :id, :last_name, { prompt: "選択してください" }, class: "form-control", style: "width: 200px;" %>
-      </div>
+          <div class="box-spacing">
+            <%= f.label :admin_id, "担当栄養士" %><br />
+            <%= f.collection_select :admin_id, Admin.all, :id, :last_name, { prompt: "選択してください" }, class: "form-control", style: "width: 200px;" %>
+          </div>
 
-      <div class="box-signup mt-3">
-        <%= f.submit "新規登録" %>
-      </div>
+          <div class="box-signup mt-3">
+            <%= f.submit "新規登録" %>
+          </div>
 
-    <% end %>
+        <% end %>
 
-      <div class="box-newusr" >
-        <p> 既に登録されている方は<%= link_to "ログイン", new_user_session_path %>へ</p>
-      </div>
-
+        <div class="box-newusr">
+          <p> 既に登録されている方は<%= link_to "ログイン", new_user_session_path %>へ</p>
+        </div>
 
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-

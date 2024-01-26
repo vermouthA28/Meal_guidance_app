@@ -15,37 +15,38 @@
 
           <% @posts.each do |post| %>
             <tr>
-              <!--<td><%#= link_to post.user.full_name, admin_user_path(user_id: post.user.id, id: post.id) %></td>-->
               <td><%= link_to post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M"), admin_user_post_path(user_id: post.user.id, id: post.id) %></td>
               <td><%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></td>
               <td>
-                  <%= content_tag(:ul) do %>
-                    <% post.meal_content.split("\n").each do |content| %>
-                      <%= content_tag(:li, content) %>
-                    <% end %>
+                <%= content_tag(:ul) do %>
+                  <% post.meal_content.split("\n").each do |content| %>
+                    <%= content_tag(:li, content) %>
                   <% end %>
+                <% end %>
               </td>
               <td>
-                  <% if post.image.present? %>
-                    <%= image_tag post.image, size: "100x100" %>
-                  <% else %>
-                    <%= image_tag 'no-image.jpg', size: "150x150" %>
-                  <% end %>
-               </td>
-               <td>
-                 <% if post.comments.present? %>
-                   <strong style="color: blue;">済</strong>
-                 <% else %>
-                   <strong style="color: red;">未</strong>
-                 <% end %>
-               </td>
-
+                <% if post.image.present? %>
+                  <%= image_tag post.image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'no-image.jpg', size: "150x150" %>
+                <% end %>
+              </td>
+              <td>
+                <% if post.comments.present? %>
+                  <strong style="color: blue;">済</strong>
+                <% else %>
+                  <strong style="color: red;">未</strong>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </table>
     </div>
   </div>
-   <div class="text-center">
+    <div class="text-center">
       <%= paginate @posts, theme: 'bootstrap-5' %>
     </div>
 </div>
+
+
+

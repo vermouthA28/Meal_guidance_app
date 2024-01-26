@@ -7,9 +7,9 @@
 
       <div class="name-section" style="color: white; padding-left: 100px;">
         <% if user_signed_in? %>
-            <h5>ようこそ、<%= current_user.full_name %>様！</h5>
+          <h5>ようこそ、<%= current_user.full_name %>様！</h5>
         <% elsif admin_signed_in? %>
-            <h5>管理者でログインしています</h5>
+          <h5>管理者でログインしています</h5>
         <% else %>
         <% end %>
       </div>
@@ -35,4 +35,3 @@
     </div>
   </nav>
 </header>
-
