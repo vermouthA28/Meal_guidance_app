@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#3C4F91; padding-top: -80px; padding-bottom: -100px;">
+    <div class="container">
+      <%= link_to (admin_signed_in? ? admin_users_path : root_path ) do %>
+        <%= image_tag 'logo1.png', size: "100x100" %>
+      <% end %>
+
+      <div class="name-section" style="color: white; padding-left: 100px;">
+        <% if user_signed_in? %>
+            <h5>ようこそ、<%= current_user.full_name %>様！</h5>
+        <% elsif admin_signed_in? %>
+            <h5>管理者でログインしています</h5>
+        <% else %>
+        <% end %>
+    </div>
+
+      <div class="ml-auto">
+        <ul class="navbar-nav">
+          <% if admin_signed_in? %>
+            <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %></li>
+          <% elsif user_signed_in? %>
+            <li class="nav-item"><%= link_to 'ホーム', new_post_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to '食事記録一覧', posts_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-white' %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to 'アバウト', home_about_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to '食事記録一覧', posts_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-white' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -20,8 +20,9 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, notice: "投稿に成功しました。"
     else
+      flash[:error] = '投稿に失敗しました'
       render 'new'
     end
   end
@@ -33,7 +34,6 @@ class Public::PostsController < ApplicationController
     @end_date = params[:end_date]
     @selected_todos = Todo.where(id: params[:todo_ids])
     @count = @selected_todos.count if @selected_todos.present?
-
 
     if @genre_id.present?
       @posts = @posts.where(genre_id: @genre_id).order(eaten_at: :asc)
@@ -57,9 +57,15 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    @user = current_user
+    @todos = @user ? @user.todos.all : nil
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: "投稿の編集に成功しました。"
+    else
+      flash[:error] = '投稿の編集に失敗しました'
+      render 'edit'
+    end
   end
 
   def destroy
@@ -78,7 +84,7 @@ class Public::PostsController < ApplicationController
 
 
   private
-  # ストロングパラメータ
+
   def post_params
     params.require(:post).permit(:eaten_at, :meal_content, :image, :genre_id, todo_ids: [] )
   end

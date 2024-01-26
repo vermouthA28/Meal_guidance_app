@@ -4,8 +4,8 @@
   <%= form_with url: {controller: :posts, action: :index}, method: :get do |f| %>
   <div class="form-row align-items-end">
     <div class="col-4">
-       <%= f.label :genre_id, "ジャンル" %>
-       <%= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "" }, class: "form-control" %>
+      <%= f.label :genre_id, "ジャンル" %>
+      <%= f.select :genre_id, options_for_select(Post.genre_ids.map { |key, value| [I18n.t("enums.post.genre_id.#{key}"), value] }), { prompt: "" }, class: "form-control" %>
     </div>
     <div class="col">
       <%= f.label :start_date, "開始日" %>
@@ -19,7 +19,7 @@
       <%= f.submit "絞り込み", class: "btn btn-primary" %>
     </div>
   </div>
-<% end %>
+  <% end %>
 
 <!--投稿一覧-->
 <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 80vh;">
@@ -51,7 +51,6 @@
               <% end %>
             </span>
 
-
             <p>コメント数： <%= post.comments.count %></p>
 
             <% if post.post_todos.present? %>
@@ -64,9 +63,9 @@
       </div>
     <% end %>
   </div>
-    <div class="text-center">
-      <%= paginate @posts, theme: 'bootstrap-5' %>
-    </div>
+  <div class="text-center">
+    <%= paginate @posts, theme: 'bootstrap-5' %>
+  </div>
 </div>
 
 

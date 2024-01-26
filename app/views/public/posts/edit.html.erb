@@ -1,7 +1,5 @@
 <h2>編集画面</h2>
 
-
-<%= render 'layouts/flash' %>
 <div class='container px-5 px-sm-0'>
   <%= form_with model: @post, local: true do |f| %>
     <div class='row'>
@@ -13,49 +11,42 @@
             </tr>
           </thead>
           <tbody>
-            <% if @todos.present? %>
-
-              <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
-                <tr>
-                  <td>
-                    <%= t.label { t.check_box + t.text } %>
-                  </td>
-                </tr>
-              <% end %>
-            <% else %>
+            <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
               <tr>
-                <td>ToDoリストはありません。</td>
+                <td>
+                  <%= t.label { t.check_box + t.text } %>
+                </td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
 
-    <div class='col-md-4'>
-      <div>
-       <%= render 'layouts/error_messages', resource: @post %>
-      </div>
-      <div>
-        <h1>【食事記録】</h1>
-        <h4>日時</h4>
-        <%= f.datetime_field :eaten_at %>
+      <div class='col-md-4'>
+        <div>
+          <%= render 'layouts/error_messages', resource: @post %>
+        </div>
+        <div>
+          <h1>【食事記録】</h1>
+          <h4>日時</h4>
+          <%= f.datetime_field :eaten_at %>
 
-        <h4>ジャンル</h4>
-        <h5 class="meal-spacing">
-          <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
-        </h5>
-        <h4>
-          <%= f.label :meal_content, "食事内容" %>
-        </h4>
-        <%= f.text_area :meal_content %>
+          <h4>ジャンル</h4>
+          <h5 class="meal-spacing">
+            <%= f.collection_radio_buttons :genre_id, [["朝食", "breakfast"], ["昼食", "lunch"], ["夕食", "dinner"], ["間食", "snack"]], :last, :first %>
+          </h5>
+          <h4>
+            <%= f.label :meal_content, "食事内容" %>
+          </h4>
+          <%= f.text_area :meal_content %>
 
-        <h4>画像</h4>
-        <%= f.file_field :image, accept: "image/*" %>
-        <div class="mt-3">
-          <%= f.submit '編集', data: { disable_with: '送信中...' } %>
+          <h4>画像</h4>
+          <%= f.file_field :image, accept: "image/*" %>
+          <div class="mt-3">
+            <%= f.submit '編集', data: { disable_with: '送信中...' } %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
-  </div>
 </div>

@@ -5,7 +5,6 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
   end
 
   def edit
@@ -36,7 +35,7 @@ class Public::UsersController < ApplicationController
     def ensure_guest_user
       @user = User.find(params[:id])
       if @user.guest_user?
-        redirect_to user_path(current_user) , danger: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+        redirect_to user_path(current_user) , error: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
     end
 
