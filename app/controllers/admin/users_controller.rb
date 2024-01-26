@@ -3,8 +3,6 @@ class Admin::UsersController < ApplicationController
 
   def index
     @members = current_admin.users.page(params[:page]).per(6)
-
-
   end
 
   def show
@@ -19,21 +17,28 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = current_admin.users.find_by(id: params[:id])
-      if @user.update(user_params)
-        if user_params[:is_active] == "0" && @user.is_active
-          flash[:notice] = "ユーザーを退会させました。"
-        elsif user_params[:is_active] == "1" && !@user.is_active
-          flash[:notice]= "ユーザーを有効化しました。"
-        else
-          flash[:notice] = "会員ステータスを更新しました。"
-        end
-        redirect_to admin_user_path(@user), notice: flash[:notice]
-      else
-        render :edit
-
-      end
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: "会員情報を更新しました"
+    else
+      flash[:error] = '会員情報の変更ができませんでした'
+      render :edit
+    end
   end
 
+  # def update
+  #   @user = current_admin.users.find_by(id: params[:id])
+  #     if @user.update(user_params)
+  #       if user_params[:is_active] == "0" && @user.is_active
+  #       elsif user_params[:is_active] == "1" && !@user.is_active
+  #       else
+
+  #       end
+  #       redirect_to admin_user_path(@user), notice: "会員情報を更新しました"
+  #     else
+  #       flash[:error] = '会員情報の変更ができませんでした'
+  #       render :edit
+  #     end
+  # end
 
 
   private
