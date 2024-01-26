@@ -8,7 +8,6 @@ class Admin::UsersController < ApplicationController
   def show
     @user = current_admin.users.find_by(id: params[:id])
     @user_posts = @user.posts.order(created_at: :desc)
-
   end
 
   def edit
@@ -24,21 +23,6 @@ class Admin::UsersController < ApplicationController
       render :edit
     end
   end
-
-  # def update
-  #   @user = current_admin.users.find_by(id: params[:id])
-  #     if @user.update(user_params)
-  #       if user_params[:is_active] == "0" && @user.is_active
-  #       elsif user_params[:is_active] == "1" && !@user.is_active
-  #       else
-
-  #       end
-  #       redirect_to admin_user_path(@user), notice: "会員情報を更新しました"
-  #     else
-  #       flash[:error] = '会員情報の変更ができませんでした'
-  #       render :edit
-  #     end
-  # end
 
 
   private

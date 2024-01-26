@@ -52,6 +52,7 @@ class Admin::TodosController < ApplicationController
 
 
   private
+  
   def todo_params
     params.require(:todo).permit(:todo, :user_id, :admin_id)
   end

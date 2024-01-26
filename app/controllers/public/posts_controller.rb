@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:show, :edit, :update]
-  # before_action :user_admin, only: [:index]
+ 
 
   def new
     @post = Post.new
@@ -11,7 +11,6 @@ class Public::PostsController < ApplicationController
     if current_user.guest_user?
       @guest_user = true
     end
-
   end
 
   def create
@@ -19,6 +18,7 @@ class Public::PostsController < ApplicationController
     @todos = @user ? @user.todos.all : nil
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました。"
     else
@@ -38,6 +38,7 @@ class Public::PostsController < ApplicationController
     if @genre_id.present?
       @posts = @posts.where(genre_id: @genre_id).order(eaten_at: :asc)
     end
+    
     if @start_date.present? && @end_date.present?
       start_datetime = DateTime.strptime(@start_date, '%Y-%m-%d')
       end_datetime = DateTime.strptime(@end_date, '%Y-%m-%d').end_of_day
@@ -60,6 +61,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = current_user
     @todos = @user ? @user.todos.all : nil
+    
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "投稿の編集に成功しました。"
     else
@@ -72,16 +74,12 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path, notice: "投稿の削除に成功しました"
-
-
   end
 
   def checked
     @post_todos = Post.new(checked_params)
     @post_todos.save
   end
-
-
 
   private
 
@@ -95,6 +93,7 @@ class Public::PostsController < ApplicationController
 
   def is_matching_login_user
     post = Post.find(params[:id])
+    
     unless current_user.guest_user? || post.user.id == current_user.id
       redirect_to posts_path
     end

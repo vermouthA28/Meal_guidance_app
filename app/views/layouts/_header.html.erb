@@ -12,12 +12,12 @@
             <h5>管理者でログインしています</h5>
         <% else %>
         <% end %>
-    </div>
+      </div>
 
       <div class="ml-auto">
         <ul class="navbar-nav">
           <% if admin_signed_in? %>
-            <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %></li>
+            <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'btn-flat-logo nav-link text-white' %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %></li>
           <% elsif user_signed_in? %>
             <li class="nav-item"><%= link_to 'ホーム', new_post_path, class: 'nav-link text-white' %></li>
@@ -35,3 +35,4 @@
     </div>
   </nav>
 </header>
+
