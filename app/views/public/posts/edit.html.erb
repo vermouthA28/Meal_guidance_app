@@ -38,7 +38,7 @@
           <h4>
             <%= f.label :meal_content, "食事内容" %>
           </h4>
-          <%= f.text_area :meal_content %>
+          <%= f.text_area :meal_content, rows: 5, cols: 35 %>
 
           <h4>画像</h4>
           <%= f.file_field :image, accept: "image/*" %>
