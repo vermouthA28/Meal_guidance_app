@@ -1,10 +1,10 @@
-class ChatsController < ApplicationController
+class Public::ChatsController < ApplicationController
   before_action :block_non_related_users, only: [:show]
-  
+
   # チャットルームの表示
   def show
-    @user = User.find(params[:id]) 
-    @admin = @user.admin_id
+    @user = User.find(params[:id])
+    @admin = User.find(@user.admin_id)
     rooms = current_user.user_rooms.pluck(:room_id) #ログイン中のユーザーの部屋情報を全て取得
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)#その中にチャットする相手とのルームがあるか確認
 
@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
     @chats = @room.chats#チャットの一覧
     @chat = Chat.new(room_id: @room.id)#チャットの投稿
   end
-  
+
   # チャットメッセージの送信
   def create
     @chat = current_user.chats.new(chat_params)
@@ -27,7 +27,7 @@ class ChatsController < ApplicationController
     @chats = @room.chats
     render :validater unless @chat.save
   end
-  
+
    # チャットメッセージの削除
   def destroy
     @chat = current_user.chats.find(params[:id])
@@ -38,6 +38,9 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:message, :room_id)
   end
+
+  def block_non_related_users # チャット相手のユーザーを取得
+    @user = User.find(params[:id])
+  end
 end
 
- 
