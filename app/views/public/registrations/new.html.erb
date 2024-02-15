@@ -36,7 +36,7 @@
 
           <div class="box-spacing">
             <%= f.label :admin_id, "担当栄養士" %><br />
-            <%= f.collection_select :admin_id, Admin.all, :id, :last_name, { prompt: "選択してください" }, class: "form-control", style: "width: 200px;" %>
+            <%= f.collection_select :admin_id, Admin.all, :id, :full_name, { prompt: "選択してください" }, class: "form-control", style: "width: 200px;" %>
           </div>
 
           <div class="box-signup mt-3">

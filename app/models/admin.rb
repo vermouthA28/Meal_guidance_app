@@ -8,4 +8,8 @@ class Admin < ApplicationRecord
   has_many :posts
   has_many :todos
 
+  def full_name
+    last_name + ' ' + first_name
+  end
+
 end
