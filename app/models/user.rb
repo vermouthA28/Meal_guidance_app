@@ -7,6 +7,9 @@ class User < ApplicationRecord
   belongs_to :admin#, optional: true
   has_many :posts, dependent: :destroy
   has_many :todos, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :rooms, through: :user_rooms
 
 
   validates :last_name, presence: true
