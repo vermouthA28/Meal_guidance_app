@@ -17,7 +17,12 @@
         </tr>
         <tr>
           <th class="table-primary col-4">担当栄養士</th>
-          <td><%= @user.admin.full_name %></td>
+          <td><%= @user.admin.full_name %>
+              <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
+          </td>
+
+
+
         </tr>
         <tr>
 

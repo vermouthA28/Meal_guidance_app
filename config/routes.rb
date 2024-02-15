@@ -43,20 +43,17 @@ Rails.application.routes.draw do
       collection do
         post 'checked', to: 'posts#checked'
         post '/todos/count', to: 'todos#count'
-
       end
     end
-  end
 
-  scope module: :public do
     get 'users/confirm_withdraw' => 'users#confirm_withdraw'
     patch 'users/withdraw' => 'users#withdraw'
     resources :users, only: [:edit, :update, :show]
-  end
+    resources :chats, only: [:show, :create, :destroy]
 
-  scope module: :public do
     root to: 'homes#top'
     get "home/about"=>"homes#about"
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end
+
