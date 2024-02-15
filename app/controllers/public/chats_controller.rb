@@ -23,9 +23,10 @@ class Public::ChatsController < ApplicationController
   # チャットメッセージの送信
   def create
     @chat = current_user.chats.new(chat_params)
+    @chat.admin_id = Admin.first.id
+    @chat.save!
     @room = @chat.room
     @chats = @room.chats
-    render :validater unless @chat.save
   end
 
    # チャットメッセージの削除
