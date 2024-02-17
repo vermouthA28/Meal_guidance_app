@@ -22,7 +22,7 @@ class Admin::ChatsController < ApplicationController
   def create
     @user = current_admin.users.find_by(id: params[:id])
     @chat = current_admin.chats.new(chat_params)
-    # @chat.user_id = @chat.room.user_rooms.find_by(admin_id: current_admin.id).user_id
+    @chat.user_id = @chat.room.user_rooms.find_by(admin_id: current_admin.id).user_id
     @chat.save
     @room = @chat.room
     @chats = @room.chats
@@ -31,8 +31,16 @@ class Admin::ChatsController < ApplicationController
 
    # チャットメッセージの削除
   def destroy
-    @chat = current_admin.chats.find(params[:id])
-    @chat.destroy
+    @user = current_admin.users.find_by(id: params[:id])
+    @chat = current_admin.chats.find_by(id: params[:id], admin_id: current_admin.id)
+    if @chat
+      @chat.destroy
+      redirect_to admin_chat_path(@chat)
+    else
+      # チャットが見つからない場合の処理
+      flash[:alert] = "指定されたチャットが見つかりませんでした。"
+      redirect_to admin_users_path # または適切なリダイレクト先
+    end
   end
 
   private

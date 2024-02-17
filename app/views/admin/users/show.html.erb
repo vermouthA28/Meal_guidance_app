@@ -5,15 +5,14 @@
         <%= @user.full_name %>様の会員詳細
       </h2>
       <div class="d-flex align-items-center">
-        <table class="table table-borderlered bg-white">
+        <table class="table table-bordered bg-white">
           <tr>
             <th class="table-primary col-4">会員ID</th>
             <td><%= @user.id %></td>
           </tr>
           <tr>
             <th class="table-primary col-4">氏名</th>
-            <td><%= @user.last_name %>　<%= @user.first_name %></td>
-            <td><%= link_to 'chatを始める', admin_chat_path(@user.id), class: "ml-3" %></td>
+            <td><%= @user.last_name %>　<%= @user.first_name %><%= link_to 'チャットルームへ', admin_chat_path(@user.id), class: "ml-5" %></td>
           </tr>
           <tr>
             <th class="table-primary col-4">メールアドレス</th>

@@ -6,6 +6,7 @@
           <div class="message-body">
             <%= chat.message %>
           </div>
+            <div class="message-destroy"><%= link_to '削除', chat_path(chat.id), method: :delete, data: { confirm: '本当に削除しますか?' } %></div>
         </div>
     <% else %>
       <div class="message other">
