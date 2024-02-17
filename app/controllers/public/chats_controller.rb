@@ -24,7 +24,7 @@ class Public::ChatsController < ApplicationController
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.admin_id = Admin.first.id
-    @chat.save!
+    @chat.save
     @room = @chat.room
     @chats = @room.chats
   end
