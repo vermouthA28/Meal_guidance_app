@@ -6,6 +6,7 @@ ja:
         lunch: "昼食"
         dinner: "夕食"
         snack: "間食"
+
   activerecord:
     attributes:
       post:
@@ -18,6 +19,8 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+
+
 
   date:
     abbr_day_names:
@@ -193,4 +196,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-

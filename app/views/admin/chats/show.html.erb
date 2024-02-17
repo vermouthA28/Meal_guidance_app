@@ -1,13 +1,13 @@
 <div class="chat-container">
   <div class="chat-topbar">
-    <h3><%= @user.admin.full_name %> 栄養士とのチャット</h3>
+    <h3><%= @user.full_name %>様とのチャット</h3>
   </div>
   <div class="message">
-    <%= render "public/chats/messages", chats: @chats, admin: @admin %>
+    <%= render "admin/chats/messages", chats: @chats, user: @user %>
   </div>
 
   <div class="chat-form">
-    <%= form_with model: @chat, data: {remote: true} do |f| %>
+    <%= form_with model: @chat, url: admin_chats_path, data: {remote: true} do |f| %>
       <div class="errors">
         <%= render "layouts/error_messages", resource: @chat %>
       </div>
@@ -17,5 +17,3 @@
     <% end %>
   </div>
 </div>
-
-

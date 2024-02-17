@@ -1,19 +1,18 @@
-class Public::ChatsController < ApplicationController
+class Admin::ChatsController < ApplicationController
   before_action :block_non_related_users, only: [:show]
 
   # チャットルームの表示
   def show
-    @user = User.find(params[:id])
-    @admin = Admin.find(@user.admin_id)
+    @admin = current_admin
+    @user = current_admin.users.find_by(id: params[:id])
     rooms = @user.user_rooms.pluck(:room_id) #ログイン中のユーザーの部屋情報を全て取得
-    user_rooms = UserRoom.find_by(user_id: @user.id, admin_id: @admin.id, room_id: rooms)#その中にチャットする相手とのルームがあるか確認
-
+    user_rooms = UserRoom.find_by(admin_id: @admin.id, user_id: @user.id, room_id: rooms)#その中にチャットする相手とのルームがあるか確認
     unless user_rooms.nil?#ユーザールームがある場合
       @room = user_rooms.room#変数@roomにユーザー（自分と相手）と紐づいているroomを代入
     else#ユーザールームが無かった場合
       @room = Room.new#新しくRoomを作る
       @room.save#そして保存
-      UserRoom.create(user_id: @user.id, admin_id: @admin.id, room_id: @room.id)#自分の中間テーブルを作成
+      UserRoom.create(admin_id: @admin.id, user_id: current_user.id, room_id: @room.id)#自分の中間テーブルを作成
     end
     @chats = @room.chats#チャットの一覧
     @chat = Chat.new(room_id: @room.id)#チャットの投稿
@@ -21,8 +20,8 @@ class Public::ChatsController < ApplicationController
 
   # チャットメッセージの送信
   def create
-    @chat = current_user.chats.new(chat_params)
-    @chat.admin_id = current_user.admin_id
+    @chat = current_admin.chats.new(chat_params)
+    @chat.user_id = @chat.room.user_rooms.find_by(admin_id: current_admin.id).user_id
     @chat.save
     @room = @chat.room
     @chats = @room.chats
@@ -31,7 +30,7 @@ class Public::ChatsController < ApplicationController
 
    # チャットメッセージの削除
   def destroy
-    @chat = current_user.chats.find(params[:id])
+    @chat = current_admin.chats.find(params[:id])
     @chat.destroy
   end
 
@@ -41,7 +40,9 @@ class Public::ChatsController < ApplicationController
   end
 
   def block_non_related_users # チャット相手のユーザーを取得
-    @user = User.find(params[:id])
+    @user = current_admin.users.find_by(id: params[:id])
   end
 end
+
+
 
