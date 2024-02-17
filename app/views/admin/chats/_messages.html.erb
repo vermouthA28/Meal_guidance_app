@@ -2,17 +2,18 @@
   <% chats.each do |chat| %>
     <% if chat.admin_id == current_admin.id %>
       <div class="message self">
+        <div class="message-sender"><%= chat.admin.full_name %></div>
         <div class="message-body">
           <%= chat.message %>
         </div>
       </div>
     <% else %>
       <div class="message other">
-        <div class="message-sender"><%= chat.user.name %></div>
-        <div class="message-body">
-          <%= chat.message %>
+        <div class="message-sender"><%= '他人' %></div>
+          <div class="message-body">
+            <%= chat.message %>
+          </div>
         </div>
-      </div>
     <% end %>
   <% end %>
 </div>

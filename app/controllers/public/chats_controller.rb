@@ -21,8 +21,9 @@ class Public::ChatsController < ApplicationController
 
   # チャットメッセージの送信
   def create
+    # @user = User.find(params[:id])
+    # @admin = Admin.find(@user.admin_id)
     @chat = current_user.chats.new(chat_params)
-    @chat.admin_id = current_user.admin_id
     @chat.save
     @room = @chat.room
     @chats = @room.chats

@@ -13,13 +13,14 @@ ja:
         eaten_at: "日時"
         meal_content: "食事内容"
         genre_id: "ジャンル"
+      chat:
+        message: "メッセージ"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-
 
 
   date:

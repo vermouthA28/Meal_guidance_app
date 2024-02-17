@@ -37,6 +37,11 @@
   color: #666;
 }
 
+.self .message-sender {
+  align-self: flex-end;
+}
+
+
 .message-body {
   padding: 10px;
   border-radius: 10px;
