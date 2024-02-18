@@ -30,11 +30,11 @@ class Public::ChatsController < ApplicationController
   end
 
    # チャットメッセージの削除
-  def destroy
-    @chat = current_user.chats.find(params[:id],user_id: current_user.id)
-    @chat.destroy
-    redirect_to chat_path(user.id)
-  end
+  # def destroy
+  #   @chat = current_user.chats.find(params[:id],user_id: current_user.id)
+  #   @chat.destroy
+  #   redirect_to chat_path(user.id)
+  # end
 
   def destroy
     @chat = current_user.chats.where(id: params[:id]).first

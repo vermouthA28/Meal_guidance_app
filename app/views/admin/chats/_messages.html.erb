@@ -9,8 +9,14 @@
         <div class="message-destroy"><%= link_to '削除', admin_chat_path(chat), method: :delete, data: { confirm: '本当に削除しますか?' } %></div>
       </div>
     <% else %>
+
       <div class="message other">
-        <div class="message-sender"><%= user.full_name %> 様</div>
+        <% if chat.admin_id %>
+          <div class="message-sender"><%= chat.admin.full_name %></div>
+        <% else %>
+          <div class="message-sender"><%= chat.user.full_name %> 様</div>
+        <% end %>
+
           <div class="message-body">
             <%= chat.message %>
           </div>
