@@ -12,7 +12,7 @@ class Admin::ChatsController < ApplicationController
     else#ユーザールームが無かった場合
       @room = Room.new#新しくRoomを作る
       @room.save#そして保存
-      UserRoom.create(admin_id: @admin.id, user_id: current_user.id, room_id: @room.id)#自分の中間テーブルを作成
+      UserRoom.create(admin_id: @admin.id, user_id:  @user.id, room_id: @room.id)
     end
     @chats = @room.chats#チャットの一覧
     @chat = Chat.new(room_id: @room.id)#チャットの投稿
