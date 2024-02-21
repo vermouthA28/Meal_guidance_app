@@ -30,7 +30,7 @@ class Public::ChatsController < ApplicationController
   end
 
    # チャットメッセージの削除
- 
+
   def destroy
     @chat = current_user.chats.where(id: params[:id]).first
 
@@ -52,4 +52,3 @@ class Public::ChatsController < ApplicationController
     @user = User.find(params[:id])
   end
 end
-
