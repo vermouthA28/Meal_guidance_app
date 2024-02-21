@@ -24,8 +24,7 @@ todoリストを作ることでお客様にして欲しいことを優先順で�
 
 
 ## 設計書
-![AWS構成図](https://github.com/vermouthA28/Meal_guidance_app/assets/147418988/b9adbe1c-cfa6-4c17-9e56-c5531b3dbf1c)
-
+<a href="https://drive.google.com/file/d/1ATE7rIw4OlsiiXo5N7pEvhgIWIcoy7pJ/view?usp=sharing" target="_blank">AWS構成図</a>
 ​
 ## 開発環境
 - OS：Linux(CentOS)
