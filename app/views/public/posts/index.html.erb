@@ -28,9 +28,9 @@
       <div class="flex-item mb-4 mx-4" style="width: 220px;">
         <div class="card" style="margin: 100; height: 500px; overflow: hidden;">
           <% if post.image.present? %>
-            <%= image_tag post.image, size: "150x150", class: "card-img-top" %>
+            <%= image_tag post.image, class: "card-img-top" %>
           <% else %>
-            <%= image_tag 'no-image.jpg', size: "150x150", class: "card-img-top" %>
+            <%= image_tag 'no-image.jpg', class: "card-img-top" %>
           <% end %>
           <div class="card-body" style="line-height: normal;">
             <h5 class="card-title">日時</h5>
