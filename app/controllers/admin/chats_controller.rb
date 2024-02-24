@@ -51,6 +51,3 @@ class Admin::ChatsController < ApplicationController
     @user = current_admin.users.find_by(id: params[:id])
   end
 end
-
-
-

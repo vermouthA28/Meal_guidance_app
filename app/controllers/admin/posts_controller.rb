@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.order(eaten_at: :asc).page(params[:page]).per(4)
+    @posts = @user.posts.order(eaten_at: :desc).page(params[:page]).per(8)
   end
 
   def show

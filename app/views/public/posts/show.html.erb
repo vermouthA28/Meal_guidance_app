@@ -29,9 +29,9 @@
             <td>
               <% if @post.post_todos.present? %>
                 <ul>
-                  <% @post.post_todos.each do |post_todo| %>
+                  <% @post.todos.each do |todo| %>
                     <li>
-                      <%= post_todo.todo.todo %>
+                      <%= todo.todo %>
                     </li>
                   <% end %>
                 </ul>

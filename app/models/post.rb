@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_todos, dependent: :destroy
   has_many :todos, through: :post_todos
+
   has_one_attached :image
   
   validates :eaten_at, presence: true
