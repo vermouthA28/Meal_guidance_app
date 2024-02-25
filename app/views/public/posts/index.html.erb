@@ -23,47 +23,46 @@
 
 <!-- 投稿一覧 -->
 
-  <div class="d-flex flex-wrap justify-content-around mt-5">
-    <% @posts.each do |post| %>
-      <div class="flex-item mb-4 mx-4" style="width: 220px;">
-        <div class="card" style="margin: 100; height: 500px; overflow: hidden;">
-          <% if post.image.present? %>
-            <%= image_tag post.image, class: "card-img-top" %>
-          <% else %>
-            <%= image_tag 'no-image.jpg', class: "card-img-top" %>
+<div class="d-flex flex-wrap justify-content-around mt-5">
+  <% @posts.each do |post| %>
+    <div class="flex-item mb-4 mx-4" style="width: 220px;">
+      <div class="card" style="margin: 100; height: 500px; overflow: hidden;">
+        <% if post.image.present? %>
+          <%= image_tag post.image, class: "card-img-top" %>
+        <% else %>
+          <%= image_tag 'no-image.jpg', class: "card-img-top" %>
+        <% end %>
+        <div class="card-body" style="line-height: normal;">
+          <h5 class="card-title">日時</h5>
+          <%= link_to post_path(post) do %>
+            <span class="date-time-block"><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>
           <% end %>
-          <div class="card-body" style="line-height: normal;">
-            <h5 class="card-title">日時</h5>
-            <%= link_to post_path(post) do %>
-              <span class="date-time-block"><%= post.eaten_at.strftime("%Y年 %m月 %d日 %H:%M") %></span>
-            <% end %>
 
-            <%= form_with model:post do |f| %>
-              <h6 class="card-text">ジャンル： <%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></h6>
-            <% end %>
+          <%= form_with model:post do |f| %>
+            <h6 class="card-text">ジャンル： <%= I18n.t("enums.post.genre_id.#{post.genre_id}") %></h6>
+          <% end %>
 
-            <h5 class="card-title">食事内容</h5>
-            <span>
-              <%= content_tag(:ul) do %>
-                <% post.meal_content.split("\n").each do |content| %>
-                  <%= content_tag(:li, content) %>
-                <% end %>
+          <h5 class="card-title">食事内容</h5>
+          <span>
+            <%= content_tag(:ul) do %>
+              <% post.meal_content.split("\n").each do |content| %>
+                <%= content_tag(:li, content) %>
               <% end %>
-            </span>
-
-            <p>コメント数： <%= post.comments.count %></p>
-
-            <% if post.post_todos.present? %>
-              <p>Todo達成：<%= post.post_todos.count %></p>
-            <% else %>
-              <p>Todo達成：0</p>
             <% end %>
-          </div>
+          </span>
+
+          <p>コメント数： <%= post.comments.count %></p>
+
+          <% if post.post_todos.present? %>
+            <p>Todo達成：<%= post.post_todos.count %></p>
+          <% else %>
+            <p>Todo達成：0</p>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
   <div class="text-center">
     <%= paginate @posts, theme: 'bootstrap-5' %>
   </div>
-</div>
