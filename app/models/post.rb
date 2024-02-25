@@ -13,7 +13,5 @@ class Post < ApplicationRecord
 
   enum genre_id: { breakfast: 0, lunch: 1, dinner: 2, snack: 3 }
 
-  after_create do
-    notifications.create(user_id: admin.id)
-  end
+  
 end

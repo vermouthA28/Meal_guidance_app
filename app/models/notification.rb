@@ -5,20 +5,18 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   def message
-     if notifiable_type === "Post"
+     if notifiable_type === "Comment"
       "#{notifiable.admin.last_name}栄養士が#{notifiable.comment}を投稿しました"
     else
-      "#{notifiable.admin.last_name}が#{notifiable.user.name}さんにDMを送信しました"
+      "#{notifiable.admin.last_name}栄養士が#{user.last_name}さんにDMを送信しました"
     end
   end
 
   def notifiable_path
-    if notification.notifiable_type === "Post"
-      post_path(post)
+    if notifiable_type === "Comment"
+      post_path(notifiable.post)
     else
-      chat_path(notifiable.user.id)
+      chat_path(user.id)
     end
   end
-
-
 end
