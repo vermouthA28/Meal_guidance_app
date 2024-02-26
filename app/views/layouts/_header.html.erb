@@ -18,6 +18,23 @@
         <ul class="navbar-nav">
           <% if admin_signed_in? %>
             <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'btn-flat-border nav-link text-white' %></li>
+            <li class="dropdown">
+              <button class="btn-flat-border nav-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                通知
+                <span class="badge badge-danger"><%= current_admin.notifications.where(read: false).admins_uniq_notifications.count %></span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <% if current_admin.notifications.where(read: false).any? %>
+                  <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
+                  <%# current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+                  <% current_admin.notifications.where(read: false).admins_uniq_notifications.each do |notification| %>
+                    <%= link_to notification.message, admin_notification_path(notification), method: :patch, class: "dropdown-item" %>
+                  <% end %>
+                <% else %>
+                  <span class="dropdown-item disabled">未読の通知はありません</span>
+                <% end %>
+              </div>
+            </li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn-flat-border nav-link text-white' %></li>
           <% elsif user_signed_in? %>
             <li class="nav-item"><%= link_to 'ホーム', new_post_path, class: 'btn-flat-border nav-link text-white' %></li>

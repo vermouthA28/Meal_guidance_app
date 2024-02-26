@@ -12,8 +12,11 @@ class Admin < ApplicationRecord
   has_many :rooms, through: :user_rooms
   has_many :notifications, dependent: :destroy
 
-
   def full_name
     last_name + ' ' + first_name
   end
+  
+  # def notifications
+    
+  # end
 end

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     resources :chats, only: [:show, :create, :destroy]
+    resources :notifications, only: :update
   end
 
 
