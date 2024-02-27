@@ -18,7 +18,9 @@
         <tr>
           <th class="table-primary col-4">担当栄養士</th>
           <td><%= @user.admin.full_name %>
+            <% if @user.email != "guest@example.com" %>
               <%= link_to 'チャットルームへ', chat_path(@user.id), class: "ml-5" %>
+            <% end %>
           </td>
         </tr>
         <tr>
