@@ -84,7 +84,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:eaten_at, :meal_content, :images, :genre_id, todo_ids: [] )
+    params.require(:post).permit(:eaten_at, :meal_content, :genre_id, todo_ids: [], images: [] )
   end
 
   def checked_params

@@ -43,8 +43,15 @@
           <tr>
             <th class="table-primary">画像</th>
             <td>
+              <!--<%# if @post.images.attached? %>-->
+              <!--  <%#= image_tag @post.images, class: "show-post-image" %>-->
+              <!--<%# else %>-->
+              <!--  <%#= image_tag 'no-image.jpg', class: "show-post-image" %>-->
+              <!--<%# end %>-->
               <% if @post.images.present? %>
-                <%= image_tag @post.images, class: "show-post-image" %>
+                <% @post.images.each do |image| %>
+                  <%= image_tag image, class: "show-post-image" %>
+                <% end %>
               <% else %>
                 <%= image_tag 'no-image.jpg', class: "show-post-image" %>
               <% end %>

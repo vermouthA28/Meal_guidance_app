@@ -19,7 +19,7 @@
           <% if admin_signed_in? %>
             <li class="nav-item"><%= link_to '会員一覧', admin_users_path, class: 'btn-flat-border nav-link text-white' %></li>
             <li class="dropdown">
-              <button class="btn-flat-border nav-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn-flat-border nav-link text-white dropdown-toggle bg-init" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 通知
                 <span class="badge badge-danger"><%= current_admin.notifications.where(read: false).admins_uniq_notifications.count %></span>
               </button>
@@ -42,7 +42,7 @@
             <li class="nav-item"><%= link_to '食事記録一覧', posts_path, class: 'btn-flat-border nav-link text-white' %></li>
 
             <li class="dropdown">
-              <button class="btn-flat-border nav-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn-flat-border nav-link text-white dropdown-toggle bg-init" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 通知
                 <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
               </button>
