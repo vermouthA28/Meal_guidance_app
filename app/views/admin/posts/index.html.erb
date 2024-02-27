@@ -25,10 +25,10 @@
                 <% end %>
               </td>
               <td>
-                <% if post.image.present? %>
-                  <%= image_tag post.image, size: "100x100" %>
+                <% if post.images.present? %>
+                  <%= image_tag post.images.first, class: "img-index" %>
                 <% else %>
-                  <%= image_tag 'no-image.jpg', size: "150x150" %>
+                  <%= image_tag 'no-image.jpg', class: "img-index" %>
                 <% end %>
               </td>
               <td>

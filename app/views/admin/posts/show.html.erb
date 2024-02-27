@@ -43,10 +43,12 @@
           <tr>
             <th class="table-primary">画像</th>
             <td>
-              <% if @post.image.present? %>
-                <%= image_tag @post.image, size: "300x300" %>
+              <% if @post.images.present? %>
+                <% @post.images.each do |image| %>
+                  <%= image_tag image, class: "show-post-image" %>
+                <% end %>
               <% else %>
-                <%= image_tag 'no-image.jpg', size: "200x200" %>
+                <%= image_tag 'no-image.jpg', class: "show-post-image" %>
               <% end %>
             </td>
           </tr>
