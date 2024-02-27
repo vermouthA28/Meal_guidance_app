@@ -43,8 +43,8 @@
           <tr>
             <th class="table-primary">画像</th>
             <td>
-              <% if @post.image.present? %>
-                <%= image_tag @post.image, class: "show-post-image" %>
+              <% if @post.images.present? %>
+                <%= image_tag @post.images, class: "show-post-image" %>
               <% else %>
                 <%= image_tag 'no-image.jpg', class: "show-post-image" %>
               <% end %>

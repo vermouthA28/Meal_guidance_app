@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :todos, through: :post_todos
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  has_one_attached :image
+  has_many_attached :images
 
   validates :eaten_at, presence: true
   validates :meal_content, presence: true
