@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_25_070627) do
+ActiveRecord::Schema.define(version: 2024_02_28_090811) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2024_02_25_070627) do
     t.text "meal_content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", default: 0, null: false
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -112,7 +113,7 @@ ActiveRecord::Schema.define(version: 2024_02_25_070627) do
     t.string "todo", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "post_id"
+    t.integer "post_id", null: false
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -132,10 +133,10 @@ ActiveRecord::Schema.define(version: 2024_02_25_070627) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "last_name"
-    t.string "first_name"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
     t.boolean "is_active", default: true, null: false
-    t.integer "admin_id"
+    t.integer "admin_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
