@@ -5,10 +5,8 @@
     <div class='row'>
       <div class='col-md-8'>
         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th style="font-size: 30px;">【Todoリスト】</th>
-            </tr>
+          <thead class="table-striped-primary">
+              <h1 style="font-size: 30px;">Todoリスト</h1>
           </thead>
           <tbody>
             <%= f.collection_check_boxes(:todo_ids, @todos, :id, :todo) do |t| %>
@@ -41,7 +39,7 @@
           <%= f.text_area :meal_content, rows: 5, cols: 35 %>
 
           <h4>画像</h4>
-          <%= f.file_field :image, accept: "image/*" %>
+          <%= f.file_field :images, accept: "image/*", multiple: true %>
           <div class="mt-3">
             <%= f.submit '編集', data: { disable_with: '送信中...' } %>
           </div>
