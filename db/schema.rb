@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2024_02_25_070627) do
     t.text "meal_content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", default: 0
   end
 
   create_table "rooms", force: :cascade do |t|
