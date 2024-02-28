@@ -28,7 +28,7 @@ todoリストを作ることでお客様にして欲しいことを優先順で�
 ​
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,Ruby,JavaScript(使用検討中です)
+- 言語：HTML,CSS,Ruby,JavaScript
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9

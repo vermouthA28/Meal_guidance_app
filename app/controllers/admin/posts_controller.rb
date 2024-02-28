@@ -11,11 +11,8 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def create
-  # @post = Post.new(post_params)
-  # @post.user_id = current_user.id
-  # @post.save
   @post = current_admin.post.new(post_params)
   @post.save
 
