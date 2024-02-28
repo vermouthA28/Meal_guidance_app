@@ -24,7 +24,13 @@ todoリストを作ることでお客様にして欲しいことを優先順で�
 
 
 ## 設計書
-<a href="https://drive.google.com/file/d/1ATE7rIw4OlsiiXo5N7pEvhgIWIcoy7pJ/view?usp=sharing" target="_blank">AWS構成図</a>
+- <a href="https://docs.google.com/spreadsheets/d/144rhKiUJWSSFAVBcTKSGu-WhS301TRJOy7vFQUAaJsQ/edit?usp=sharing" target="_blank">実装機能リスト</a>
+- <a href="https://drive.google.com/file/d/1Nq5vLNPwrlE1CdSypV65dKxgLyx1y9xM/view?usp=sharing" target="_blank">ER図</a>
+- <a href="https://docs.google.com/spreadsheets/d/1TozMXEM3fmoB-dUyATCbiTo3KcNcsi5w/edit?usp=sharing&ouid=106266377208772221057&rtpof=true&sd=true" target="_blank">テーブル定義書</a>
+- <a href="https://docs.google.com/spreadsheets/d/1W6RgINhkLsBiVkR97hGTJgA5cnNxh0U8uX6inrj3vbQ/edit?usp=sharing" target="_blank">アプリケーション詳細設計</a>
+- <a href="https://docs.google.com/spreadsheets/d/1PjbKKHmjADq0ikSC3UHuWiQqEyJLN57wuiDctoqtJDs/edit?usp=sharing" target="_blank">AWSインフラ設計書</a>
+- <a href="https://drive.google.com/file/d/1ATE7rIw4OlsiiXo5N7pEvhgIWIcoy7pJ/view?usp=sharing" target="_blank">AWS構成図</a>
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
